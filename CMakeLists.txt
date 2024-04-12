@@ -7,11 +7,10 @@ project(Panel_lavadora C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(PICO_BOARD pico_w)
-set(CMAKE_ASM_FLAGS "-mthumb")
 
 # Initialize the SDK
 pico_sdk_init()
 
-
-
-
+add_subdirectory(botonEncendido)
+add_subdirectory(botonEncenderApagar)
+# export PICO_SDK_PATH=../../pico-sdk
