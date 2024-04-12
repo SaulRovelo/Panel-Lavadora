@@ -1,5 +1,6 @@
 add_executable(botonEncenderApagar
     bEncApg.c
+    ../common/sdk_inlines.c
 )
 
 target_link_libraries(botonEncenderApagar
