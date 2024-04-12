@@ -1,16 +1,17 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.15)
+
+# Pull in SDK (must be before project)
+include(pico_sdk_import.cmake)
+
+project(Panel_lavadora C CXX ASM)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(PICO_BOARD pico_w)
+set(CMAKE_ASM_FLAGS "-mthumb")
+
+# Initialize the SDK
+pico_sdk_init()
 
 
-# Agregar tus archivos fuente al proyecto
-add_executable(hello_7segment
-        hello_7segment.S
-        ../common/sdk_inlines.c
-        
-)
-
-# Enlazar la biblioteca estándar a tu ejecutable
-target_link_libraries(hello_7segment pico_stdlib)
 
 
-# create map/bin/hex file etc.
-pico_add_extra_outputs(hello_7segment)
