@@ -1,5 +1,5 @@
 add_executable(botonEncendido
-    botonEnc.c
+    botonEnc.S
 )
 
 target_link_libraries(botonEncendido

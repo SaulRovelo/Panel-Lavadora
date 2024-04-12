@@ -13,9 +13,9 @@ int main() {
 
     while (true) {
         gpio_put(LED_PIN, 1); // Enciende el LED
-        sleep_ms(1000); // Espera 1 segundo
+        sleep_ms(100); // Espera 1 segundo
         gpio_put(LED_PIN, 0); // Apaga el LED
-        sleep_ms(1000); // Espera 1 segundo
+        sleep_ms(100); // Espera 1 segundo
     }
 
     return 0;
