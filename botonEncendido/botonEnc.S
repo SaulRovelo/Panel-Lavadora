@@ -48,8 +48,6 @@ while:
     @ Vuelve al inicio del bucle
     b while             @ Salta incondicionalmente a la etiqueta 'while'.
 
-    @ Epilogue - Fin de la función
-    movs lr, 0          @ Movimiento ficticio, no tiene efecto ya que no es el registro adecuado para establecer un valor de retorno.
 
 .align 4
 DELAY: .word 1000       @ Define DELAY como una palabra (32 bits) con valor 1000 (milisegundos).
