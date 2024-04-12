@@ -1,5 +1,7 @@
 add_executable(botonEncendido
     botonEnc.c
+    ../common/sdk_inlines.c
+
 )
 
 target_link_libraries(botonEncendido
