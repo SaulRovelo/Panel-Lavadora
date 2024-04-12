@@ -1,56 +1,55 @@
-@ Directivas minimas
-.text @ Guardar las instrucciones en la seccion de codigo
-.align 1 @ Indica que el codigo ocupa direcciones de memoria de 2^1 Byte
-.global main @ Permite que el procedimiento pueda llamarse
-.syntax unified @ Usa la sintaxis nueva de ARM thumb
-.thumb_func @ Indica que las instrucciones de la funcion son de 2 B
+@ Directivas de ensamblador
+.text                   @ La sección .text indica donde se almacena el código.
+.align 1                @ Alinea el código a direcciones de memoria que sean múltiplos de 2^1 (2 bytes).
+.global main            @ Hace que la función main sea accesible desde otros archivos o módulos.
+.syntax unified         @ Establece el uso de la sintaxis unificada de ARM.
+.thumb_func             @ Indica que main será compilada en el modo Thumb, usando instrucciones de 16 bits.
 
-.equ LED_PIN, 15
-@.equ GPIO_OUT, 1
+.equ LED_PIN, 15        @ Define LED_PIN como una constante con valor 15.
 
-main: 
-    @prologue
-    push {r7, lr} @ Guardar los registros r7 y lr en la pila
-    sub sp, 4 @ Reservar espacio en la pila para las variables locales
-    add r7, sp, 0 @ Asignar la direccion de la pila al registro r7
+main:                   @ Etiqueta de inicio de la función principal.
+    @ Prologue - Preparación de la función
+    push {r7, lr}       @ Guarda los registros r7 (frame pointer) y lr (link register) en la pila.
+    sub sp, 4           @ Reserva espacio en la pila para variables locales.
+    add r7, sp, 0       @ Establece r7 como el nuevo frame pointer.
 
-    @stdio_init_all
-    bl stdio_init_all
+    @ Inicialización de sistemas estándar de E/S
+    bl stdio_init_all   @ Llama a stdio_init_all para inicializar todas las funciones de E/S estándar.
 
-    @gpio_init(LED_PIN)
-    ldr r0 [r7, 4]
-    bl gpio_init
+    @ Configuración del GPIO para el LED
+    ldr r0, [r7, 4]     @ Carga en r0 el valor de LED_PIN.
+    bl gpio_init        @ Llama a gpio_init para inicializar el pin LED_PIN.
 
-    @gpio_set_dir(LED_PIN, GPIO_OUT);
-    movs r1, 1
-    ldr  r0, [r7, 4]
-    bl gpio_set_dir_wrapper
+    @ Establece la dirección del GPIO a salida
+    movs r1, 1          @ Mueve el valor 1 a r1, indicando 'salida'.
+    ldr r0, [r7, 4]     @ Recarga el valor de LED_PIN en r0.
+    bl gpio_set_dir_wrapper @ Llama a gpio_set_dir_wrapper con r0 como pin y r1 como dirección.
 
-
-    @While(true)
+    @ Bucle infinito
 while:
-    @gpio_put(LED_PIN, 1); // Enciende el LED
-    movs r1, 1
-    ldr r0, [r7, 4]
-    bl gpio_put_wrapper
+    @ Enciende el LED
+    movs r1, 1          @ Mueve el valor 1 a r1 (encendido).
+    ldr r0, [r7, 4]     @ Carga en r0 el valor de LED_PIN.
+    bl gpio_put_wrapper @ Llama a gpio_put_wrapper para actualizar el estado del GPIO.
 
-    @sleep_ms(1000); // Espera 1 segundo
-    ldr r0, DELAY
-    bl sleep_ms 
+    @ Retardo
+    ldr r0, DELAY       @ Carga en r0 el valor de DELAY.
+    bl sleep_ms         @ Llama a sleep_ms con el retardo especificado.
 
-    @gpio_put(LED_PIN, 0); // Apaga el LED
-    movs r1, 0
-    ldr r0, [r7, 4]
-    bl gpio_put_wrapper
+    @ Apaga el LED
+    movs r1, 0          @ Mueve el valor 0 a r1 (apagado).
+    ldr r0, [r7, 4]     @ Carga en r0 el valor de LED_PIN.
+    bl gpio_put_wrapper @ Llama a gpio_put_wrapper para actualizar el estado del GPIO.
 
-    @sleep_ms(1000); // Espera 1 segundo
-    ldr r0, DELAY
-    bl sleep_ms
+    @ Retardo
+    ldr r0, DELAY       @ Recarga en r0 el valor de DELAY.
+    bl sleep_ms         @ Llama a sleep_ms con el retardo especificado.
 
-    b while
+    @ Vuelve al inicio del bucle
+    b while             @ Salta incondicionalmente a la etiqueta 'while'.
 
-    @return 0
-    movs lr, 0
+    @ Epilogue - Fin de la función
+    movs lr, 0          @ Movimiento ficticio, no tiene efecto ya que no es el registro adecuado para establecer un valor de retorno.
 
 .align 4
-DELAY: .word 1000
+DELAY: .word 1000       @ Define DELAY como una palabra (32 bits) con valor 1000 (milisegundos).
