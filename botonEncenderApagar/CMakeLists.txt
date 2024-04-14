@@ -1,4 +1,5 @@
 add_executable(botonEncenderApagar
+    # bEncApg.c
     bEncApg.S
     ../common/sdk_inlines.c
 )

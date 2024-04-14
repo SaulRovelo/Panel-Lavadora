@@ -64,9 +64,6 @@ loop_while:
     cmp r3, 0
     bne if_led_on
 
-    b loop_while
-    @ * }
-
 if_led_on:
     ldr r3, [r7, 4]
     cmp r3, 0
@@ -99,6 +96,7 @@ final_if:
     ldr r0, DELAY
     bl sleep_ms
     b loop_while
+    @ * }
 
 button_callback:
     ldr r3, [r7, 0]
