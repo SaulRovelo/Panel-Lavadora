@@ -51,61 +51,40 @@ main:
     movs r0, BUTTON_PIN
     bl gpio_pull_up_wrapper
 
-    @ * gpio_set_irq_enabled_with_callback(BUTTON_PIN, GPIO_IRQ_EDGE_FALL, true, &button_callback);
-    movs r0, BUTTON_PIN
-    movs r1, GPIO_IRQ_EDGE_FALL
-    movs r2, true
-    ldr r3, =button_callback
-    bl gpio_set_irq_enabled_with_callback
-
 loop_while:
     @ * while (true) {
-    ldr r3, [r7, 0]
-    cmp r3, 0
-    bne if_led_on
+    @ * if (!gpio_get(BUTTON_PIN)) {
+    movs r0, BUTTON_PIN
+    bl gpio_get_wrapper
+    cmp r0, 0
+    bne if_interno
 
-if_led_on:
-    ldr r3, [r7, 4]
-    cmp r3, 0
-    beq if_led_off
-    @ gpio_put(LED_PIN, 0);
-    @ led_encendido = false;
+else:
+    @ * boton_presionado = false;
+    ldr r0, [r7, 0]
+    movs r0, 0
+    str r0, [r7, 0]
+    b loop_while
+
+if_interno:
+    @ * if (!boton_presionado) {
+    ldr r0, [r7, 0]
+    cmp r0, 0
+    bne if_interno_fuera
+    @ * gpio_put(LED_PIN, !led_encendido);
     movs r0, LED_PIN
-    movs r1, 0
+    ldr r1, [r7, 4]
+    mvns r1, r1 @ ! Negar el valor de r1
     bl gpio_put_wrapper
-    ldr r3, [r7, 4]
-    movs r3, 0
-    str r3, [r7, 4]
-    b final_if
-    
-if_led_off:
-    @ gpio_put(LED_PIN, 1);
-    @ led_encendido = true;
-    movs r0, LED_PIN
-    movs r1, 1
-    bl gpio_put_wrapper
-    ldr r3, [r7, 4]
-    movs r3, 1
-    str r3, [r7, 4]
+    str r1, [r7, 4]
 
-final_if:
-    ldr r3, [r7, 0]
-    movs r3, 0
-    str r3, [r7, 0]
-
-    ldr r0, DELAY
-    bl sleep_ms
+if_interno_fuera:
+    @ * boton_presionado = true;
+    ldr r0, [r7, 0]
+    movs r0, 1
+    str r0, [r7, 0]
     b loop_while
     @ * }
-
-button_callback:
-    ldr r3, [r7, 0]
-    movs r3, 1
-    str r3, [r7, 0]
-    bx lr
-
-.align 4
-DELAY: .word 200 @ Definir la constante DELAY con valor 1000
 
 @ * Importante
 @ ! Alerta
