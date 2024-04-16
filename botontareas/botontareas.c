@@ -10,7 +10,7 @@ int main(){
     // Función inicialización de todas las E/S
     stdio_init_all();
 
-    // Inicializamos los LEDs
+    // Inicializamos los LED
     gpio_init(LED1_PIN);
     gpio_set_dir(LED1_PIN, GPIO_OUT);
     gpio_init(LED2_PIN);
@@ -29,12 +29,13 @@ int main(){
     bool boton_presionado = false;
     uint32_t tiempo_presionado = 0;
 
-    // Bucle While
     while (true){
         if (gpio_get(BUTTON_PIN) == 0) { // Verificar el estado del botón (0 o 1)
+
             uint32_t tiempo_actual = time_us_32(); // Obtener tiempo actual en microsegundos
 
-            // Verificar si han pasado menos de 500ms desde la última pulsación
+            // Verificamos si han pasado menos de 500ms desde la última pulsación
+
             if (tiempo_actual - tiempo_anterior < 500000) {
                 pulsaciones++; // Incrementar contador de pulsaciones
             } else {
