@@ -1,10 +1,12 @@
 #include "led_control.h"
 
-int main() {
-    init_led_control(); // Inicializa los LEDs y el botón
+int main()
+ {
+    
+    init_led(); // Inicializa los LEDs y el botón
 
     // Controla los LEDs
-    control_leds();
+    control();
 
     return 0;
 }

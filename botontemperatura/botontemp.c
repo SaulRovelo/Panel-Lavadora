@@ -7,7 +7,7 @@
 #define LED_PIN_3 2
 #define BUTTON_PIN 3
 
-void init_led(){
+void init_led() {
     // Función inicialización 
     stdio_init_all();
 
@@ -25,6 +25,10 @@ void init_led(){
     gpio_init(BUTTON_PIN);
     gpio_set_dir(BUTTON_PIN, GPIO_IN);
     gpio_pull_up(BUTTON_PIN);
+}
+
+
+void control(){
 
     // Variable para controlar el estado de los LEDs
     int contador = 1;

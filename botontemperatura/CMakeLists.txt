@@ -1,4 +1,6 @@
 add_executable(botontemperatura
+    main.c
+    led_control.h
     botontemp.c
     ../common/sdk_inlines.c
 )
