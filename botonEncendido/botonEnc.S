@@ -17,19 +17,19 @@ main:                   @ Etiqueta de inicio de la función principal.
     bl stdio_init_all   @ Llama a stdio_init_all para inicializar todas las funciones de E/S estándar.
 
     @ Configuración del GPIO para el LED
-    ldr r0, [r7, 4]     @ Carga en r0 el valor de LED_PIN.
+    movs r0, LED_PIN     @ Carga en r0 el valor de LED_PIN.
     bl gpio_init        @ Llama a gpio_init para inicializar el pin LED_PIN.
 
     @ Establece la dirección del GPIO a salida
     movs r1, 1          @ Mueve el valor 1 a r1, indicando 'salida'.
-    ldr r0, [r7, 4]     @ Recarga el valor de LED_PIN en r0.
+    movs r0, LED_PIN     @ Recarga el valor de LED_PIN en r0.
     bl gpio_set_dir_wrapper @ Llama a gpio_set_dir_wrapper con r0 como pin y r1 como dirección.
 
     @ Bucle infinito
 while:
     @ Enciende el LED
     movs r1, 1          @ Mueve el valor 1 a r1 (encendido).
-    ldr r0, [r7, 4]     @ Carga en r0 el valor de LED_PIN.
+    movs r0, LED_PIN     @ Carga en r0 el valor de LED_PIN.
     bl gpio_put_wrapper @ Llama a gpio_put_wrapper para actualizar el estado del GPIO.
 
     @ Retardo
@@ -38,7 +38,7 @@ while:
 
     @ Apaga el LED
     movs r1, 0          @ Mueve el valor 0 a r1 (apagado).
-    ldr r0, [r7, 4]     @ Carga en r0 el valor de LED_PIN.
+    movs r0, LED_PIN     @ Carga en r0 el valor de LED_PIN.
     bl gpio_put_wrapper @ Llama a gpio_put_wrapper para actualizar el estado del GPIO.
 
     @ Retardo
