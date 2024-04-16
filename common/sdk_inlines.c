@@ -25,3 +25,8 @@ gpio_set_mask(mask);
 void gpio_clr_mask_wrapper(long mask){
 gpio_clr_mask(mask);
 }
+
+void gpio_put_wrapper(unsigned gpio, bool value)
+{
+    gpio_put(gpio,value);
+}

@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <pico/stdlib.h>
+#include "led_control.h"
 
 #define LED_PIN_1 0
 #define LED_PIN_2 1
 #define LED_PIN_3 2
 #define BUTTON_PIN 3
 
-int main(){
+void init_led(){
     // Función inicialización 
     stdio_init_all();
 
@@ -68,5 +69,4 @@ int main(){
         }
     }
     
-    return 0;
 }
