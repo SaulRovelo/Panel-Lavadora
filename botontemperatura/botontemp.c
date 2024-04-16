@@ -6,7 +6,7 @@
 #define LED_PIN_2 1
 #define LED_PIN_3 2
 #define BUTTON_PIN 3
-  
+  /*
 void init_led() {
     // Función inicialización 
     stdio_init_all();
@@ -25,10 +25,27 @@ void init_led() {
     gpio_init(BUTTON_PIN);
     gpio_set_dir(BUTTON_PIN, GPIO_IN);
     gpio_pull_up(BUTTON_PIN);
-}
+}*/
 
 
 void control(){
+      // Función inicialización 
+    stdio_init_all();
+
+    // Inicializamos los LEDs
+    gpio_init(LED_PIN_1);
+    gpio_set_dir(LED_PIN_1, GPIO_OUT);
+
+    gpio_init(LED_PIN_2);
+    gpio_set_dir(LED_PIN_2, GPIO_OUT);
+    
+    gpio_init(LED_PIN_3);
+    gpio_set_dir(LED_PIN_3, GPIO_OUT);
+
+    // Inicializamos el botón
+    gpio_init(BUTTON_PIN);
+    gpio_set_dir(BUTTON_PIN, GPIO_IN);
+    gpio_pull_up(BUTTON_PIN);
 
     // Variable para controlar el estado de los LEDs
     int contador = 1;
