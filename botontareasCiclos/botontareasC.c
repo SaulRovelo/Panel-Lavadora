@@ -9,7 +9,7 @@
 #define LED_PIN_6 5
 #define BUTTON_PIN 6
 
-int main(){
+void ciclos(){
     // Función inicialización 
     stdio_init_all();
 
@@ -119,5 +119,4 @@ int main(){
         }
     }
     
-    return 0;
 }

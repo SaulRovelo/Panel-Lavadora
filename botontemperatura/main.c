@@ -3,8 +3,6 @@
 int main()
  {
 
-    
-
     // Controla los LEDs
     control();
 
