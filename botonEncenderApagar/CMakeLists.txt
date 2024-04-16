@@ -1,6 +1,6 @@
 add_executable(botonEncenderApagar
     bEncApg.c
-    ../common/sdk_inlines.c
+    #../common/sdk_inlines.c
 )
 
 target_link_libraries(botonEncenderApagar
@@ -10,3 +10,6 @@ target_link_libraries(botonEncenderApagar
 )
 
 pico_add_extra_outputs(botonEncenderApagar)
+
+pico_enable_stdio_usb(botonEncenderApagar 1)
+pico_enable_stdio_uart(botonEncenderApagar 0)

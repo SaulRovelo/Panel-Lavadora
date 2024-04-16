@@ -44,23 +44,24 @@ init:
     @ gpio_set_dir(LED_PIN, GPIO_OUT);
     movs r1, GPIO_OUT
     movs r0, LED_PIN
-    bl gpio_set_dir
+    bl gpio_set_dir_wrapper
 
     @ gpio_init(BUTTON_PIN);
     movs r1,BUTTON_PIN
     bl gpio_init
+
     @ gpio_set_dir(BUTTON_PIN, GPIO_IN);
     movs r1, GPIO_IN
     movs r0, BUTTON_PIN
-    bl gpio_set_dir
+    bl gpio_set_dir_wrapper
     
 
     @ gpio_pull_up(BUTTON_PIN);
     movs r1, BUTTON_PIN
-    bl gpio_pull_up
+    bl gpio_pull_up_wrapper
 
     @  gpio_set_irq_enabled_with_callback(BUTTON_PIN, GPIO_IRQ_EDGE_FALL, true, button_callback);
-
+    
 
 while:
 
@@ -77,7 +78,7 @@ if_2:
     @ gpio_put(LED_PIN, 0);
     movs r1, 0
     movs r0, LED_PIN
-    bl gpio_put
+    bl gpio_put_wrapper
 
 ldr r3,[r7 ,44]
     movs r3,0 @ val = 0;
@@ -92,7 +93,7 @@ else:
     @ gpio_put(LED_PIN, 1);
     movs r1,1
     movs r0,LED_PIN
-    bl gpio_put
+    bl gpio_put_wrapper
 
     @ led_encendido = true;
     ldr r3,[r7,4]
