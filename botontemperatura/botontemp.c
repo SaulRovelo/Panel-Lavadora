@@ -13,8 +13,10 @@ int main(){
     // Inicializamos los LEDs
     gpio_init(LED_PIN_1);
     gpio_set_dir(LED_PIN_1, GPIO_OUT);
+
     gpio_init(LED_PIN_2);
     gpio_set_dir(LED_PIN_2, GPIO_OUT);
+    
     gpio_init(LED_PIN_3);
     gpio_set_dir(LED_PIN_3, GPIO_OUT);
 

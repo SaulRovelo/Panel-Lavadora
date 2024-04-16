@@ -6,9 +6,12 @@
 .thumb_func @ Indica que las instrucciones de la funcion son de 2 B
 
 .equ LED_PIN, 0
-.equ BUTTON_PIN, 1
+.equ LED_PIN2, 1
+.equ LED_PIN3, 2
+.equ BUTTON_PIN, 3
 .equ GPIO_OUT, 1
 .equ GPIO_IN, 0
+.equ contador, 1
 
 
 main:
@@ -16,15 +19,13 @@ main:
 
     @ Prologue
     push {r7,lr}
-    sub sp, 4
-    add r7, sp, 0
-    
-
+    sub sp, 
 init:
 
     @ stdio_init_all();
     bl stdio_init_all
 
+//lED 1
     @ gpio_init(LED_PIN);
     movs r0, LED_PIN
     bl gpio_init
@@ -33,6 +34,27 @@ init:
     movs r0, LED_PIN
     movs r1, GPIO_OUT
     bl gpio_set_dir_wrapper
+
+//LED 2
+    @ gpio_init(LED_PIN);
+    movs r0, LED_PIN2
+    bl gpio_init
+
+    @ gpio_set_dir(LED_PIN, GPIO_OUT);
+    movs r0, LED_PIN2
+    movs r1, GPIO_OUT
+    bl gpio_set_dir_wrapper
+
+//LED 3
+    @ gpio_init(LED_PIN);
+    movs r0, LED_PIN3
+    bl gpio_init
+
+    @ gpio_set_dir(LED_PIN, GPIO_OUT);
+    movs r0, LED_PIN3
+    movs r1, GPIO_OUT
+    bl gpio_set_dir_wrapper
+
 
     @ gpio_init(BUTTON_PIN);
     movs r0,BUTTON_PIN
@@ -47,71 +69,31 @@ init:
     movs r0, BUTTON_PIN
     bl gpio_pull_up_wrapper
 
-    @ bool led_encendido = false;
-    movs r3,0
-    str r3,[r7,0]
-    
-@ while (true)
-while:
+while: 
     @ if (gpio_get(BUTTON_PIN) == 0) 
     movs r0, BUTTON_PIN
     bl gpio_get_wrapper
     cmp r0,1
-    bne if_2
+    bne if1
 
     b Final
 
-if_2:
-    @ if (!led_encendido) 
-    ldr r0,[r7,0]
-    cmp r0,0
-    bne else
+//Encender LED 1
+if1: 
+    movs r0, contador   ; Cargar el valor de 'contador' en el registro R0
+    cmp R0, #1         ; Comparar R0 con 1
+    beq contador_es_1  ; Saltar a contador_es_1 si son iguales
 
+contador_es_1: 
     
-    @ gpio_put(LED_PIN, 1); 
     movs r0, LED_PIN
     movs r1, 1
     bl gpio_put_wrapper
 
-    @ led_encendido = true; 
-    ldr r3, [r7,0]
-    movs r3, 1
-    str r3, [r7,0]
-
-    @ printf("Lavadora encendida\n");
-    ldr r0, =MSG1
-    bl printf
-
-    b Final
-
-
-else:
-    @ gpio_put(LED_PIN, 0);
-    movs r0, LED_PIN
+    movs r0, LED_PIN2
     movs r1, 0
     bl gpio_put_wrapper
-    @ led_encendido = false;
-    ldr r3, [r7,0]
-    movs r3, 0
-    str r3, [r7,0]
 
-    @ printf("Lavadora apagada\n");
-    ldr r0, =MSG2
-    bl printf
-    b Final
-
-Final:
-    @ sleep_ms(200);
-    ldr r0, DELAY
-    bl sleep_ms
-
-    ldr r0, =MSG3
-    bl printf
-
-    b while
-
-.align 4
-DELAY: .word 200 @ Definir la constante DELAY con valor 200
-MSG1: .ascii "Lavadora Encendida\012\000"
-MSG2: .ascii "Lavadora Apagada\012\000"
-MSG3: .ascii "Boton\012\0
+    movs r0, LED_PIN3
+    movs r1, 0
+    bl gpio_put_wrapper
