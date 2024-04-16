@@ -13,4 +13,4 @@ pico_sdk_init()
 
 add_subdirectory(botonEncendido)
 add_subdirectory(botonEncenderApagar)
-# export PICO_SDK_PATH=../../pico-sdk
+add_subdirectory(botontemperatura)
