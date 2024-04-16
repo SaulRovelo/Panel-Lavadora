@@ -4,11 +4,13 @@
 En el desarrollo reciente, se ha trabajado en la implementación de código para encender y apagar de un LED, alternando entre encendido y apagado cada segundo. Este proceso se realizó utilizando dos lenguajes de programación diferentes: C y ensamblador ARM.
 
 ### Implementación en Lenguaje C:
-10/04/2024
+***10/04/2024***
+
 Se desarrolló y codificó un programa en C destinado a encender y apagar un LED. El código permite encender el LED durante un segundo y luego apagarlo durante otro segundo, realizando esta acción de manera repetitiva.
 
 ### Implementación en Lenguaje de Ensamblaje ARM:
-12/04/2024
+***12/04/2024***
+
 Se creó una versión del programa en lenguaje de ensamblaje ARM, optimizada para su uso en la Raspberry Pi Pico W. Este código fue también diseñado para alternar el estado del LED cada segundo.
 
 ### Pruebas en Circuito Físico:
