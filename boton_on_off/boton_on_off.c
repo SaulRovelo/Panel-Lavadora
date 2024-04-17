@@ -40,3 +40,51 @@ int main() {
 
     return 0;
 }
+
+/*
+//Con funciones
+#include <stdio.h>
+#include "pico/stdlib.h"
+#include "hardware/gpio.h"
+
+#define LED_PIN 11
+#define BUTTON_PIN 12
+
+#define BUTTON_PRESSED 0
+#define LED_ON 1
+
+void init_button_led() {
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+
+    gpio_init(BUTTON_PIN);
+    gpio_set_dir(BUTTON_PIN, GPIO_IN);
+    gpio_pull_up(BUTTON_PIN);
+}
+
+void handle_button() {
+    static bool button_pressed = false;
+    static bool led_on = false;
+
+    if (!gpio_get(BUTTON_PIN)) {
+        if (!button_pressed) {
+            gpio_put(LED_PIN, !led_on);
+            led_on = !led_on;
+        }
+        button_pressed = true;
+    } else {
+        button_pressed = false;
+    }
+}
+
+int main() {
+    stdio_init_all();
+    init_button_led();
+
+    while (true) {
+        handle_button();
+    }
+
+    return 0;
+}
+*/
