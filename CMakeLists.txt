@@ -13,3 +13,5 @@ set(PICO_BOARD pico_w)
 pico_sdk_init()
 
 add_subdirectory(Led_start)
+add_subdirectory(botontareasCiclos)
+add_subdirectory(boton_on_off)
