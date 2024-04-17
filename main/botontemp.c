@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <pico/stdlib.h>
 #include "led_control.h"
+#include <stdlib.h>
 
 #define LED_PIN_1 0
 #define LED_PIN_2 1
 #define LED_PIN_3 2
-#define BUTTON_PIN 3
+#define BUTTON_PIN 15
 
 
 void control(){
@@ -64,7 +65,7 @@ void control(){
                 gpio_put(LED_PIN_1, 0); // Apagar LED 1
                 gpio_put(LED_PIN_2, 0); // Apagar LED 2
                 gpio_put(LED_PIN_3, 0); // Apagar LED 3
-                contador = 1;
+               return; 
             }
             while(gpio_get(BUTTON_PIN) == 0); // Esperar hasta que el botón se suelte
         }
