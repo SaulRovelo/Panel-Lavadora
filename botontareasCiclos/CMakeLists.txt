@@ -1,5 +1,7 @@
 add_executable(botontareasCiclos
     botontareasC.c
+    main.c
+    control_led.h
     ../common/sdk_inlines.c
 )
 
