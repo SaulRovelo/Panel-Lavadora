@@ -9,7 +9,7 @@
 static bool led_encendido = false;
 
 void inicializar_boton_encendido() {
-    stdio_init_all();
+    //stdio_init_all();
     gpio_init(LED_PIN_6);
     gpio_set_dir(LED_PIN_6, GPIO_OUT);
     gpio_init(BUTTON_PIN_7);

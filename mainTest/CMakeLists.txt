@@ -2,6 +2,8 @@ add_executable(mainTest
     mainTest.c
     boton_encendido.h
     bEncendido.c
+    bAgua.c
+    bAgua.h
     #../common/sdk_inlines.c
 )
 
