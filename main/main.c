@@ -8,7 +8,6 @@
 #define LED_PIN_5 4
 #define LED_PIN_6 5
 
-
 #define LED_PIN_7 6
 #define LED_PIN_8 7
 #define LED_PIN_9 8
@@ -158,6 +157,7 @@ void control() {
         }
     }
 }
+
 int main() {
     // Inicialización de la biblioteca stdio
     stdio_init_all();
@@ -176,7 +176,6 @@ int main() {
     bool button2_state = true;
 
     while (true) {
-        
         // Verificar el estado del primer botón
         bool current_button_state = gpio_get(BUTTON_PIN) == 0;
         if (current_button_state != button_state && current_button_state == false) {
