@@ -20,15 +20,19 @@ int bits[10] = {
     0x67  // 9
 };
 
-int main() {
-    stdio_init_all(); // Inicializar las funciones de entrada/salida estándar del Pico
-
+void initGpioSegmentDisplay(){
     // Inicializar los GPIO para los segmentos del display
     for (int gpio = S1; gpio < S1 + 7; gpio++) {
         gpio_init(gpio);  // Inicializar el pin GPIO
         gpio_set_dir(gpio, GPIO_OUT);  // Configurar el pin como salida
         //gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);  // Invertir la salida del GPIO
     }
+}
+
+int main() {
+    stdio_init_all(); // Inicializar las funciones de entrada/salida estándar del Pico
+
+    initGpioSegmentDisplay();
 
     // Inicializar el GPIO para el botón
     gpio_init(BUTTON);
