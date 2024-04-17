@@ -3,10 +3,20 @@
 #include <pico/stdlib.h>
 #include "pico/stdlib.h"
 
+#define TOTAL_GPIO_PINS 26
+
 #define LED_PIN_6 6
 #define BUTTON_PIN_7 7
 
 static bool led_encendido = false;
+
+// Implementación de la función para apagar todos los LEDs
+void apagar_todos_los_leds() {
+    // Apaga todas las salidas GPIO
+    for (int pin = 0; pin < TOTAL_GPIO_PINS; pin++) {
+        gpio_put(pin, 0);
+    }
+}
 
 void inicializar_boton_encendido() {
     //stdio_init_all();
@@ -30,6 +40,9 @@ void control_leds_encendido() {
         gpio_put(LED_PIN_6, 0);
         led_encendido = false;
         printf("Lavadora apagada\n");
+        // Llama a la función para apagar todos los LEDs
+        apagar_todos_los_leds();
     }
     sleep_ms(200);
 }
+

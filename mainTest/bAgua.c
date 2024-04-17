@@ -37,11 +37,9 @@ void inicializar_leds_agua() {
 
 
 void control_leds_agua() {
-    printf("Dentro nivel agua\n");
     if (gpio_get(BUTTON_PIN_2) == 0) {    // Verificar el estado del botón (0 o 1)
         if (contador == 0) {
             // Enciende el siguiente LED y apaga el anterior
-            printf("Dentro nivel agua 1 \n");
             gpio_put(LED_PIN_1, 1);
             gpio_put(LED_PIN_2, 0);
             gpio_put(LED_PIN_3, 0);
