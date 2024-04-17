@@ -29,16 +29,19 @@ void initGpioSegmentDisplay(){
     }
 }
 
-int main() {
-    stdio_init_all(); // Inicializar las funciones de entrada/salida estándar del Pico
-
-    initGpioSegmentDisplay();
-
-    // Inicializar el GPIO para el botón
+void initGpioButtonSegmentDisplay(){
+// Inicializar el GPIO para el botón
     gpio_init(BUTTON);
     gpio_set_dir(BUTTON, GPIO_IN);  // Configurar el pin como entrada
     gpio_pull_up(BUTTON);  // Activar la resistencia de pull-up interna para el botón
 
+}
+
+int main() {
+    stdio_init_all(); // Inicializar las funciones de entrada/salida estándar del Pico
+
+    initGpioSegmentDisplay();
+    initGpioButtonSegmentDisplay();
     int val = 9;  // Valor inicial para mostrar en el display
     bool paused = false;  // Indicador de si el display está en pausa
     uint64_t ultimaPulsacion = 0;  // Registrar el último tiempo de pulsación para el debounce
