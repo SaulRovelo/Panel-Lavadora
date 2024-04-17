@@ -13,5 +13,6 @@ pico_sdk_init()
 
 add_subdirectory(botonEncendido)
 add_subdirectory(botonEncenderApagar)
+add_subdirectory(potenciometroModosLavado)
 
 # export PICO_SDK_PATH=../../pico-sdk
