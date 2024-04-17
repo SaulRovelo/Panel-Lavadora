@@ -12,5 +12,5 @@ set(PICO_BOARD pico_w)
 pico_sdk_init()
 
 add_subdirectory(botonEncendido)
-add_subdirectory(botonCiclosDeLavado)
+add_subdirectory(botonInicioPausa)
 # export PICO_SDK_PATH=../../pico-sdk
