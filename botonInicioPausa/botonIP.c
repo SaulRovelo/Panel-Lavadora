@@ -27,7 +27,7 @@ int main() {
     for (int gpio = S1; gpio < S1 + 7; gpio++) {
         gpio_init(gpio);  // Inicializar el pin GPIO
         gpio_set_dir(gpio, GPIO_OUT);  // Configurar el pin como salida
-        gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);  // Invertir la salida del GPIO
+        //gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);  // Invertir la salida del GPIO
     }
 
     // Inicializar el GPIO para el botón
@@ -54,6 +54,7 @@ int main() {
             sleep_ms(500);  // Mostrar el número durante 500 milisegundos
             gpio_clr_mask(mask);  // Apagar los pines del GPIO
             sleep_ms(500);  // Apagar durante 500 milisegundos
+            val--;
         } else {
             // Cuando está en pausa, mostrar continuamente el valor actual sin cambiar
             int32_t mask = bits[val] << S1;
