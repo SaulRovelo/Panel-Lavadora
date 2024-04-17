@@ -5,6 +5,6 @@
 
 void inicializar_boton_encendido();
 bool verificar_boton_encendido();
-void control_led_encendido();
+void control_leds_encendido();
 
 #endif
