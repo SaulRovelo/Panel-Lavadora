@@ -38,7 +38,7 @@ int main() {
     int val = 9;  // Valor inicial para mostrar en el display
     bool paused = false;  // Indicador de si el display está en pausa
     uint64_t ultimaPulsacion = 0;  // Registrar el último tiempo de pulsación para el debounce
-    const uint64_t debounce_time = 300;  // Tiempo de debounce en milisegundos
+    const uint64_t debounce_time = 100;  // Tiempo de debounce en milisegundos
 
     while (true) {
         // Comprobar si el botón es presionado con debouncing
@@ -49,14 +49,13 @@ int main() {
 
         // Mostrar el valor actual en el display de 7 segmentos solo si no está en pausa
         if (!paused) {
-            if (val > 0){
-            int32_t mask = bits[val] << S1;  // Calcular la máscara de bits para los pines del display
-            gpio_set_mask(mask);  // Establecer los pines del GPIO según la máscara de bits
-            sleep_ms(500);  // Mostrar el número durante 500 milisegundos
-            gpio_clr_mask(mask);  // Apagar los pines del GPIO
-            sleep_ms(500);  // Apagar durante 500 milisegundos
-            val--;
-            } else{
+            if (val >= 0){
+                int32_t mask = bits[val] << S1;  // Calcular la máscara de bits para los pines del display
+                gpio_set_mask(mask);  // Establecer los pines del GPIO según la máscara de bits
+                sleep_ms(500);  // Mostrar el número durante 500 milisegundos
+                gpio_clr_mask(mask);  // Apagar los pines del GPIO
+                val--;
+            }  else {
                 printf("Ropa Limpia :))");
                 break;
             }
@@ -65,6 +64,9 @@ int main() {
             // Cuando está en pausa, mostrar continuamente el valor actual sin cambiar
             int32_t mask = bits[val] << S1;
             gpio_set_mask(mask);  // Mantener los pines del GPIO establecidos continuamente
+            sleep_ms(500);  // Apagar durante 500 milisegundos
+            gpio_clr_mask(mask);  // Apagar los pines del GPIO
+            sleep_ms(500);
         }
     }
 }
