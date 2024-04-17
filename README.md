@@ -16,3 +16,8 @@ Se creó una versión del programa en lenguaje de ensamblaje ARM, optimizada par
 ### Pruebas en Circuito Físico:
 
 Ambas versiones del código fueron probadas en un circuito físico, donde se demostró la funcionalidad esperada. Los tests confirmaron que el LED se enciende y se apaga correctamente en los intervalos programados, validando así la efectividad de las implementaciones en ambos lenguajes.
+
+### Implementacion de Display
+***16/04/2024 - 17/04/2024***
+
+Se implemento el display de 7 segmentos, su funcionamiento consiste en un contador decendente el cual simula el tiempo de trabaja de la lavadora, el cual se puede controlar con un boton (inicio/pausa), y al llegar a cero (0) se imprime un mensaje en pantalla dando a entender que la lavadora ha finalizado su decion de lavado. 
