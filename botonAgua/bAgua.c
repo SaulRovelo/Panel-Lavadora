@@ -1,5 +1,7 @@
+#include "bAgua.h"
 #include <stdio.h>
 #include <pico/stdlib.h>
+#include "pico/stdlib.h"
 
 #define LED_PIN_1 0
 #define LED_PIN_2 1
@@ -8,7 +10,10 @@
 #define LED_PIN_5 4
 #define BUTTON_PIN 5
 
-int main(){
+// Variable para controlar el estado de los LEDs
+static int contador = 0;
+
+void inicializar_leds_agua() {
     // Función inicialización 
     stdio_init_all();
 
@@ -28,78 +33,64 @@ int main(){
     gpio_init(BUTTON_PIN);
     gpio_set_dir(BUTTON_PIN, GPIO_IN);
     gpio_pull_up(BUTTON_PIN);
+}
 
-    // Variable para controlar el estado de los LEDs
-    int contador = 0;
+bool verificar_boton_agua() {
+    return gpio_get(BUTTON_PIN) == 0;
+}
 
-    while (true){
-        if (gpio_get(BUTTON_PIN) == 0) // Verificar el estado del botón (0 o 1)
-        {
+void control_leds_agua() {
+    if (verificar_boton_presionado()) {    // Verificar el estado del botón (0 o 1)
+        if (contador == 0) {
             // Enciende el siguiente LED y apaga el anterior
-            if (contador == 0) 
-            {
-                gpio_put(LED_PIN_1, 1); // Encender LED 1
-                gpio_put(LED_PIN_2, 0); // Apagar LED 2
-                gpio_put(LED_PIN_3, 0); // Apagar LED 3
-                gpio_put(LED_PIN_4, 0); // Apagar LED 4
-                gpio_put(LED_PIN_5, 0); // Apagar LED 5
-                printf("Seleccion: Nivel 1\n");
-                contador = 1;
-            } 
-            else if (contador == 1) 
-            {
-                gpio_put(LED_PIN_1, 0); // Apagar LED 1
-                gpio_put(LED_PIN_2, 1); // Encender LED 2
-                gpio_put(LED_PIN_3, 0); // Apagar LED 3
-                gpio_put(LED_PIN_4, 0); // Apagar LED 4
-                gpio_put(LED_PIN_5, 0); // Apagar LED 5
-                printf("Seleccion: Nivel 2\n");
-                contador = 2;
-            }
-            else if (contador == 2) 
-            {
-                gpio_put(LED_PIN_1, 0); // Apagar LED 1
-                gpio_put(LED_PIN_2, 0); // Apagar LED 2
-                gpio_put(LED_PIN_3, 1); // Encender LED 3
-                gpio_put(LED_PIN_4, 0); // Apagar LED 4
-                gpio_put(LED_PIN_5, 0); // Apagar LED 5
-                printf("Seleccion: Nivel 3\n");
-                contador = 3;
-            }
-            else if (contador == 3) 
-            {
-                gpio_put(LED_PIN_1, 0); // Apagar LED 1
-                gpio_put(LED_PIN_2, 0); // Apagar LED 2
-                gpio_put(LED_PIN_3, 0); // Apagar LED 3
-                gpio_put(LED_PIN_4, 1); // Encender LED 4
-                gpio_put(LED_PIN_5, 0); // Apagar LED 5
-                printf("Seleccion: Nivel 4\n");
-                contador = 4;
-            }
-            else if (contador == 4) 
-            {
-                gpio_put(LED_PIN_1, 0); // Apagar LED 1
-                gpio_put(LED_PIN_2, 0); // Apagar LED 2
-                gpio_put(LED_PIN_3, 0); // Apagar LED 3
-                gpio_put(LED_PIN_4, 0); // Apagar LED 4
-                gpio_put(LED_PIN_5, 1); // Encender LED 5
-                printf("Seleccion: Nivel 5\n");
-                contador = 5;
-            }
-            else if (contador == 5) 
-            {
-                gpio_put(LED_PIN_1, 0); // Apagar LED 1
-                gpio_put(LED_PIN_2, 0); // Apagar LED 2
-                gpio_put(LED_PIN_3, 0); // Apagar LED 3
-                gpio_put(LED_PIN_4, 0); // Apagar LED 4
-                gpio_put(LED_PIN_5, 0); // Apagar LED 5
-                printf("Ningun nivel selecionado\n");
-                contador = 0;
-            }
-            sleep_ms(200);
-            //while(gpio_get(BUTTON_PIN) == 0); // Esperar hasta que el botón se suelte
+            gpio_put(LED_PIN_1, 1);
+            gpio_put(LED_PIN_2, 0);
+            gpio_put(LED_PIN_3, 0);
+            gpio_put(LED_PIN_4, 0);
+            gpio_put(LED_PIN_5, 0);
+            printf("Seleccion: Nivel 1\n");
+            contador = 1;
+        } else if (contador == 1) {
+            gpio_put(LED_PIN_1, 0);
+            gpio_put(LED_PIN_2, 1);
+            gpio_put(LED_PIN_3, 0);
+            gpio_put(LED_PIN_4, 0);
+            gpio_put(LED_PIN_5, 0);
+            printf("Seleccion: Nivel 2\n");
+            contador = 2;
+        } else if (contador == 2) {
+            gpio_put(LED_PIN_1, 0);
+            gpio_put(LED_PIN_2, 0);
+            gpio_put(LED_PIN_3, 1);
+            gpio_put(LED_PIN_4, 0);
+            gpio_put(LED_PIN_5, 0);
+            printf("Seleccion: Nivel 3\n");
+            contador = 3;
+        } else if (contador == 3) {
+            gpio_put(LED_PIN_1, 0);
+            gpio_put(LED_PIN_2, 0);
+            gpio_put(LED_PIN_3, 0);
+            gpio_put(LED_PIN_4, 1);
+            gpio_put(LED_PIN_5, 0);
+            printf("Seleccion: Nivel 4\n");
+            contador = 4;
+        } else if (contador == 4) {
+            gpio_put(LED_PIN_1, 0);
+            gpio_put(LED_PIN_2, 0);
+            gpio_put(LED_PIN_3, 0);
+            gpio_put(LED_PIN_4, 0);
+            gpio_put(LED_PIN_5, 1);
+            printf("Seleccion: Nivel 5\n");
+            contador = 5;
+        } else if (contador == 5) {
+            gpio_put(LED_PIN_1, 0);
+            gpio_put(LED_PIN_2, 0);
+            gpio_put(LED_PIN_3, 0);
+            gpio_put(LED_PIN_4, 0);
+            gpio_put(LED_PIN_5, 0);
+            printf("Ningún nivel seleccionado\n");
+            contador = 0;
         }
+        sleep_ms(200); 
     }
-    
-    return 0;
 }
