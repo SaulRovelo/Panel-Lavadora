@@ -20,4 +20,4 @@ Ambas versiones del código fueron probadas en un circuito físico, donde se dem
 ### Implementacion de Display
 ***16/04/2024 - 17/04/2024***
 
-Se implemento el display de 7 segmentos, su funcionamiento consiste en un contador decendente el cual simula el tiempo de trabaja de la lavadora, el cual se puede controlar con un boton (inicio/pausa), y al llegar a cero (0) se imprime un mensaje en pantalla dando a entender que la lavadora ha finalizado su decion de lavado. 
+Se implemento el display de 7 segmentos, su funcionamiento consiste en un contador decendente el cual simula el tiempo de trabaja de la lavadora, el cual se puede controlar con un boton (inicio/pausa), y al llegar a cero (0) se imprime un mensaje en pantalla dando a entender que la lavadora ha finalizado su sesión de lavado. 
