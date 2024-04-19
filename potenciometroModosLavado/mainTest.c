@@ -4,6 +4,7 @@
 #include "potenciometroModosLavado.h"
 
 int main(){
+    stdio_init_all();
     inicializar_leds_ModosLavado();
     while (true){
         leds_potenciometro();

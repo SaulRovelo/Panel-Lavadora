@@ -1,5 +1,5 @@
 add_executable(potenciometroModosLavado
-    potenciometroModosLavado.c
+    # potenciometroModosLavado.c
     potenciometroModosLavado.h
     mainTest.c
 )
