@@ -1,5 +1,7 @@
 add_executable(potenciometroModosLavado
     potenciometroModosLavado.c
+    potenciometroModosLavado.h
+    mainTest.c
 )
 
 target_link_libraries(potenciometroModosLavado
