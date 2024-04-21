@@ -48,11 +48,12 @@ void displayLoop(){
     const uint64_t debounce_time = 300;
 
     while (hola){
-        int32_t mask = word[index] << S1;
-            gpio_set_mask(mask);
-            sleep_ms(1000);
-            gpio_clr_mask(mask);
-            sleep_ms(1000);
+        for (int i = 0; i < 3; i++){
+            int32_t mask = word[index] << S1;
+                gpio_set_mask(mask);
+                sleep_ms(1500);
+                gpio_clr_mask(mask);
+        }
         hola = false;
     }
     
