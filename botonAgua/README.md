@@ -17,7 +17,8 @@ El código en lenguaje C configura los pines del botón de selección de nivel d
 Al inicializar el código, se configuran los pines de los LEDs de nivel de agua y el botón de selección de nivel de agua. La función verificar_boton_nivel_agua() detecta la presión del botón de selección de nivel de agua y la función control_leds_nivel_agua() activa el LED correspondiente al nivel seleccionado.
 
 # Prototipo
-[Imagen]
+![Boton nivel de agua](https://github.com/SaulRovelo/Panel-Lavadora/assets/141974676/1a41f188-30f4-46d9-94a3-72e2d0156ab4)
+
 
 Nota: Los GPIO utilizados pueden variar dependiendo de la configuración.
 
