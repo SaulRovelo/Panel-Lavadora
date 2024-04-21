@@ -14,6 +14,11 @@ static int bits[10] = {
 };
 
 void initGpioSegmentDisplay(){
+    //Inicializamos los GPIO para cada segmento del display
+    for (int gpio = S1; gpio < S1 + 7; gpio++){
+        gpio_init(gpio);
+        gpio_set_dir(gpio, GPIO_OUT);
+    }
     
 }
 
