@@ -52,14 +52,14 @@ void displayLoop(){
                 val--;
             } else {
                 printf("Ropa Limpia :))\n");
-                break;
+                continue;
             }
         } else {
             int32_t mask = bits[val] << S1;
             gpio_set_mask(mask);
-            sleep_ms(500);
+            sleep_ms(1500);
             gpio_clr_mask(mask);
-            sleep_ms(500);
+            sleep_ms(1500);
         }
     }
 }
