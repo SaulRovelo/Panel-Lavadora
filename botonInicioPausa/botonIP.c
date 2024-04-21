@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include "pico/stdlib.h"
-#include "hardware/gpio.h"
-#include "pico/binary_info.h"
-
-#define BUTTON 0 // Definir el pin del GPIO para el botón
-#define S1 2     // Definir el pin de inicio para los segmentos del display de 7 segmentos
-
+#include "botonIP.h"
 // Este array convierte un número del 0 al 9 en un patrón de bits para enviar a los GPIOs
 int bits[10] = {
     0x3f, // 0
@@ -21,20 +14,15 @@ int bits[10] = {
 };
 
 void initGpioSegmentDisplay(){
-    // Inicializar los GPIO para los segmentos del display
-    for (int gpio = S1; gpio < S1 + 7; gpio++) {
-        gpio_init(gpio);  // Inicializar el pin GPIO
-        gpio_set_dir(gpio, GPIO_OUT);  // Configurar el pin como salida
-        //gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);  // Invertir la salida del GPIO
-    }
+    
 }
 
-void initGpioButtonSegmentDisplay(){
-// Inicializar el GPIO para el botón
-    gpio_init(BUTTON);
-    gpio_set_dir(BUTTON, GPIO_IN);  // Configurar el pin como entrada
-    gpio_pull_up(BUTTON);  // Activar la resistencia de pull-up interna para el botón
+void initGpioButton(){
 
+}
+
+void displayLoop(){
+    
 }
 
 int main() {
