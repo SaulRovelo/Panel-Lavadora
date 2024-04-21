@@ -17,7 +17,7 @@ static int bits[10] = {
 static int word[4] = {
     0x76, // H
     0x3f, // 0
-    0x06, // 1
+    0x38, // L
     0x77 // A
 };
 
@@ -41,20 +41,20 @@ void initGpioButton(){
 void displayLoop(){
     stdio_init_all();
     bool hola = true;
-    int index = 0;
     int val = 9;
     bool paused = false;
     uint64_t ultimaPulsacion = 0;
     const uint64_t debounce_time = 300;
 
     while (hola){
-        for (int i = 0; i < 3; i++){
-            int32_t mask = word[index] << S1;
+        for (int index = 0; index < 4; index++){
+            int32_t mask = word[index] << 2;
                 gpio_set_mask(mask);
                 sleep_ms(1500);
                 gpio_clr_mask(mask);
         }
         hola = false;
+        sleep_ms(3000);
     }
     
 
