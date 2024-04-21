@@ -23,7 +23,10 @@ void initGpioSegmentDisplay(){
 }
 
 void initGpioButton(){
-
+    //Inicializamos el GPIO para el bóton
+    gpio_init(BUTTON);
+    gpio_set_dir(BUTTON,GPIO_IN);
+    gpio_pull_up(BUTTON);
 }
 
 void displayLoop(){
