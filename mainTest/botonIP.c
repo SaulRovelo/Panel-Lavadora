@@ -1,4 +1,5 @@
 #include "botonIP.h"
+
 // Este array convierte un número del 0 al 9 en un patrón de bits para enviar a los GPIOs
 static int bits[10] = {
     0x3f, // 0
@@ -18,6 +19,7 @@ void initGpioSegmentDisplay(){
     for (int gpio = S1; gpio < S1 + 7; gpio++){
         gpio_init(gpio);
         gpio_set_dir(gpio, GPIO_OUT);
+        //gpio_set_outover(gpio, GPIO_OUT);
     }
     
 }
@@ -31,7 +33,6 @@ void initGpioButton(){
 
 void displayLoop(){
     stdio_init_all();
-
     int val = 9;
     bool paused = false;
     uint64_t ultimaPulsacion = 0;
@@ -47,7 +48,7 @@ void displayLoop(){
             if (val >= 0) {
                 int32_t mask = bits[val] << S1;
                 gpio_set_mask(mask);
-                sleep_ms(1000);
+                sleep_ms(1500);
                 gpio_clr_mask(mask);
                 val--;
             } else {
