@@ -28,6 +28,7 @@ int main() {
         // Si la lavadora está encendida, controlar los LEDs de agua
         if (lavadora_encendida) {
             control_leds_agua();
+            
         }
     }
     

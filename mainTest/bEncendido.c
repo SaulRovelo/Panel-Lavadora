@@ -18,7 +18,7 @@ void apagar_todos_los_leds() {
     }
 }
 
-void inicializar_boton_encendido() {
+void inicializar_boton_encendido() {  //init()
     //stdio_init_all();
     gpio_init(LED_PIN_6);
     gpio_set_dir(LED_PIN_6, GPIO_OUT);
