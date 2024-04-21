@@ -33,7 +33,7 @@ El prototipo se monta de la siguiente manera:
 
 - Conexión de resistencias: Conecta resistencias en serie con los LEDs para limitar la corriente.
 
-
+![Prototipo](https://github.com/AGN-Teaching/proyecto-equipo-4/assets/141948152/cb2e0f15-5b8b-4e13-82e5-8bd250ed3cf5)
 
 ## Instalación y Uso
 1. Clona este repositorio en tu dispositivo.
