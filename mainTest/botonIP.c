@@ -31,8 +31,6 @@ void initGpioButton(){
 
 void displayLoop(){
     stdio_init_all();
-    init_gpio_segment_display();
-    init_gpio_button_segment_display();
 
     int val = 9;
     bool paused = false;
