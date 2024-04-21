@@ -20,5 +20,8 @@ int nums[12] = {
 
 int main(){
     stdio_init_all();
-
+    for (int gpio = 0; gpio < firstGpio + 10; gpio++){
+        gpio_init(gpio);
+        gpio_set_dir(gpio, GPIO_OUT);
+    }
 }
