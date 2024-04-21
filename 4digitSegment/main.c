@@ -20,8 +20,19 @@ int nums[12] = {
 
 int main(){
     stdio_init_all();
+    int val = 0;
+
     for (int gpio = 0; gpio < firstGpio + 10; gpio++){
         gpio_init(gpio);
         gpio_set_dir(gpio, GPIO_OUT);
     }
+
+    while (true){
+        int32_t mask = nums[val] << firstGpio;
+        gpio_set_mask(mask);
+        sleep_ms(1000);
+        gpio_clr_mask(mask);
+        val++;    
+    }
+    
 }
