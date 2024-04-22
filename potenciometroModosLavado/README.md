@@ -2,11 +2,11 @@
 
 ## Implementación
 
-Esta funcionalidad lo que permite es seleccionar el modo de lavado mediante un potenciometro por medio de una Raspberry Pi Pico W ela cual encendera y apagará leds, manteniendo encendido el que se quede seleccionado.
+Esta funcionalidad lo que permite es seleccionar el modo de lavado mediante un potenciometro por medio de una Raspberry Pi Pico W la cual encendera y apagará leds, manteniendo encendido el que se quede seleccionado.
 
 ## Esquema Fisico
 
-<img src="./EsquemaFisico.png" style="max-width:500px;">
+<img src="./EsquemaFisico.png" style="max-height:300px;">
 
 ## Funcionamiento
 
@@ -21,17 +21,11 @@ Los leds encendidos nos indican los diferentes modos de lavado:
 
 ## Diagrama de Flujo del programa modularizado
 
-<div style="display:flex; align-items:center;">
-    <div style="flex:1;">
-        <img src="./DiagramaFlujo.png" style="max-width:200px;">
-    </div>
-    <div style="flex:1;">
-        <h2>Instalación y Uso</h2>
-        <ol>
-            <li>Clona este repositorio en tu dispositivo.</li>
-            <li>Conecta los componentes a la Raspberry Pi Pico W y a la protoboard según el esquema de conexión proporcionado.</li>
-            <li>Compila y carga el código en la Raspberry Pi Pico W.</li>
-            <li>Gira la perilla del potenciómetro para seleccionar un modo.</li>
-        </ol>
-    </div>
-</div>
+<img src="./DiagramaFlujo.png" style="max-height:300px;">
+
+## Instalación y Uso
+
+1. Clona este repositorio en tu dispositivo.
+2. Conecta los componentes a la Raspberry Pi Pico W y a la protoboard según el esquema de conexión proporcionado.
+3. Compila y carga el código en la Raspberry Pi Pico W.
+4. Gira la perilla del potenciómetro para seleccionar un modo.
