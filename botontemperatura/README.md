@@ -26,7 +26,7 @@ El prototipo se monta de la siguiente manera:
 - Conexión a tierra: Asegúrate de conectar el pin de tierra (GND) del Raspberry Pi Pico W a la protoboard para proporcionar una referencia común para las conexiones.
 
 - Conexión de resistencias: Conecta resistencias en serie con los LEDs para limitar la corriente.
-
+![Prototipo](https://github.com/SaulRovelo/Panel-Lavadora/assets/141948152/8e07f75f-3f2d-44a1-8490-936f2ca0bb11)
 
 ## Instalación y Uso
 1. Clona este repositorio en tu dispositivo.
