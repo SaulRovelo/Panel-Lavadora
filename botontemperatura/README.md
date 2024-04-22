@@ -33,4 +33,4 @@ El prototipo se monta de la siguiente manera:
 1. Conecta los componentes a la Raspberry Pi Pico W y a la protoboard según el esquema de conexión proporcionado.
 1. Compila y carga el código en la Raspberry Pi Pico W.
 1. Presiona el botón según el nivel de temperatura deseado.
-1. Repite el paso anterior para cambiar entre los diferentes niveles de temperatura.
+1. Repite el paso anterior para cambiar entre los diferentes niveles de temperatura. 
