@@ -4,7 +4,6 @@
 
 #define POT_PIN 26
 #define FIRST_GPIO 2
-#define SLEEP 50
 
 static int bits[10] = {
     0x01,  // 1
@@ -32,9 +31,9 @@ void inicializar_leds_ModosLavado(){
     }
 }
 
-void leds_potenciometro(){
-    // Leer el valor del ADC en el pin GPIO configurado (pin 26)
+void leer_potenciometro(){
     adc_value = adc_read();
+
     if (adc_value >= 0 && adc_value < 697){
         value = 0;
     } else if (adc_value >= 697 && adc_value < 1377){
@@ -48,13 +47,17 @@ void leds_potenciometro(){
     } else {
         value = 5;
     }
+}
 
+void encender_leds_potenciometro(){
     // We are starting with GPIO 2, our bitmap starts at bit 0 so shift to start at 2.
     mask = bits[value] << FIRST_GPIO;
 
     gpio_set_mask(mask);
-    
-    sleep_ms(SLEEP);
+}
 
+// sleep_ms(SLEEP);
+
+void apagar_leds_potenciometro(){
     gpio_clr_mask(mask);
 }
