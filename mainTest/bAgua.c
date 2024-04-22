@@ -14,20 +14,11 @@
 static int contador = 0;
 
 void inicializar_leds_agua() {
-    // Función inicialización 
-    //stdio_init_all();
-
     // Inicializamos los LEDs
-    gpio_init(LED_PIN_1);
-    gpio_set_dir(LED_PIN_1, GPIO_OUT);
-    gpio_init(LED_PIN_2);
-    gpio_set_dir(LED_PIN_2, GPIO_OUT);
-    gpio_init(LED_PIN_3);
-    gpio_set_dir(LED_PIN_3, GPIO_OUT);
-    gpio_init(LED_PIN_4);
-    gpio_set_dir(LED_PIN_4, GPIO_OUT);
-    gpio_init(LED_PIN_5);
-    gpio_set_dir(LED_PIN_5, GPIO_OUT);
+    for (int i = 0; i < 5; i++) {
+        gpio_init(i);        // Inicializamos el pin
+        gpio_set_dir(i, GPIO_OUT); // Configuramos como salida
+    }
 
     // Inicializamos el botón
     gpio_init(BUTTON_PIN_2);
