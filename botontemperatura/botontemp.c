@@ -2,10 +2,10 @@
 #include <pico/stdlib.h>
 #include "led_control.h"
 
-#define LED_PIN_1 0
-#define LED_PIN_2 1
-#define LED_PIN_3 2
-#define BUTTON_PIN 3
+#define LED_PIN_1 18
+#define LED_PIN_2 19
+#define LED_PIN_3 20
+#define BUTTON_PIN 21
 
 
 void control(){
@@ -43,14 +43,16 @@ void control(){
                 printf("Temperatura 1\n");
                 contador = 2;
             } 
+            
             else if (contador == 2) 
             {
-                gpio_put(LED_PIN_1, 0); // Apagar LED 1
+                gpio_put(LED_PIN_1, 1); // Apagar LED 1
                 gpio_put(LED_PIN_2, 1); // Encender LED 2
                 gpio_put(LED_PIN_3, 0); // Apagar LED 3
                 printf("Temperatura 2\n");
                 contador = 3;
             }
+
             else if (contador == 3) 
             {
                 gpio_put(LED_PIN_1, 0); // Apagar LED 1
