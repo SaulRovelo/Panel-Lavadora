@@ -20,4 +20,12 @@ static int contador = 0;
 
 bool lavadora_encendida = false;
 
+//Variables boton Temperatura
+
+#define LED_PIN_18 18
+#define LED_PIN_19 19
+#define LED_PIN_20 20
+#define BUTTON_PIN_21 21
+static int contadorT = 1;
+
 #endif // VARIABLES_H
