@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define POT_PIN 26
-#define FIRST_GPIO 2
+#define FIRST_GPIO 8
 
 static int bits[10] = {
     0x01,  // 1
