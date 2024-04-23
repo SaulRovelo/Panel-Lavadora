@@ -18,3 +18,8 @@ void inicializar() {
     gpio_set_dir(BUTTON_PIN, GPIO_IN);
     gpio_pull_up(BUTTON_PIN);
 }
+
+bool isButtonPressed() {
+    // Verificar el estado del botón (0 o 1)
+    return gpio_get(BUTTON_PIN) == 0;
+}
