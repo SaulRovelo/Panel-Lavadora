@@ -69,7 +69,9 @@ void ciclos() {
             gpio_put(LED2_PIN, 1); // Encender LED 2
             gpio_put(LED3_PIN, 1); // Encender LED 3
         }
-    } else {
+         else {
         boton_presionado = false; // Reiniciar el indicador de presión del botón cuando no está siendo presionado
     }
+    }
+
 
