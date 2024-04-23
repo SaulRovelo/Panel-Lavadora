@@ -1,6 +1,8 @@
 
 #include <stdio.h>
+
 #include <pico/stdlib.h>
+
 #include "Variables.h"
 
 void inicializar() {
