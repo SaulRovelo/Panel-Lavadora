@@ -1,6 +1,6 @@
 #include "boton_encendido.h"
 #include <pico/stdlib.h>
-#include "bAgua.h"
+#include "botonAgua.h"
 #include "variables.h"
 #include "botontemperatura.h"
 #include "potenciometroModosLavado.h"
@@ -26,29 +26,32 @@ int main() {
             lavadora_encendida = !lavadora_encendida;
             // Imprimir el estado actual de la lavadora
             printf("Lavadora %s\n", lavadora_encendida ? "encendida" : "apagada");
-            sleep_ms(200); 
-            
+            sleep_ms(sleep_duration_ms); 
         } 
 
-        // Si la lavadora está encendida, controlar los LEDs de agua
+        // Si la lavadora está encendida, Controla las funcionalidades
         if (lavadora_encendida) {
-            //if(boton)
-            leer_potenciometro();
-            encender_leds_potenciometro();
-            
-            control_leds_agua();
-            
-            temperatura();
-            
-            tareas();
-            
+            /*if (boton_inicio())
+            {
+                //Funcion parpadeo
 
-            sleep_ms(200);
-            apagar_leds_potenciometro(); 
+            }*///else (boton_pausa){
+                leer_potenciometro(); // Lee el valor del potenciometro y asigna un valor entre 0 a 5 a una variable.
+                encender_leds_potenciometro(); // Enciende los leds segun el valor del potenciometro.
+                
+                control_leds_agua(); // Enciende los led's de nivel de agua al presionar el boton
+                
+                control_leds_temperatura(); // Enciende los led's de temperatura al presionar el boton
+                
+                control_leds_tareas(); // Enciende los led's de Tareas de lavado al presionar el boton
+                sleep_ms(sleep_duration_ms);  // Sleep de 125 ms
             
+                apagar_leds_potenciometro(); // Apaga los leds del potenciometro 
+            //}
         } else {
-            apagar_y_reiniciar_leds();
+            apagar_y_reiniciar_leds(); // Implementación de la función para apagar todos los LEDs y reiniciar los leds.
         }
+        
     }
     
     return 0;

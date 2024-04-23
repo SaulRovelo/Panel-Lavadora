@@ -18,7 +18,7 @@ void inicializar_leds_tareas() {
     gpio_pull_up(BUTTON_PIN);
 }
 
-void tareas(){
+void control_leds_tareas(){
     if (gpio_get(BUTTON_PIN) == 0) // Verificar el estado del botón (0 o 1)
         {
             // Enciende el siguiente LED y apaga el anterior
