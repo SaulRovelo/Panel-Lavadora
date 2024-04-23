@@ -14,6 +14,6 @@ pico_sdk_init()
 add_subdirectory(botonEncendido)
 add_subdirectory(botonInicioPausa)
 add_subdirectory(mainTest)
-add_subdirectory(4digitSegment)
+#add_subdirectory(4digitSegment)
 add_subdirectory(main)
 # export PICO_SDK_PATH=../../pico-sdk
