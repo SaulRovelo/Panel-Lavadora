@@ -1,5 +1,5 @@
 
-#include <stdio.h>
+/*#include <stdio.h>
 
 #include <pico/stdlib.h>
 
@@ -72,4 +72,4 @@ void ciclos() {
     }
 
 
-
+*/

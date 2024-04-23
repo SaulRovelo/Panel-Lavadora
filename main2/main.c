@@ -23,7 +23,7 @@ inicio();
     while (true)
     {
         temperatura();
-        sleep_ms(200);
+        sleep_ms(100);
     }
     
 }
