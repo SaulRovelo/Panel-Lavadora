@@ -19,7 +19,7 @@ Este código implementa un programa para controlar una lavadora mediante Raspber
 
 # Prototipo
 
-
+<img src="./Boton Agua-Encendido.png" style="max-height:600px;">
 Nota:Los GPIO utilizados pueden variar dependiendo como se conecta.
 
 
