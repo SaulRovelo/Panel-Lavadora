@@ -5,8 +5,8 @@
 
 #define TOTAL_GPIO_PINS 26
 
-#define LED_PIN_6 6
-#define BUTTON_PIN_7 7
+#define LED_PIN_6 0
+#define BUTTON_PIN_7 1
 
 static bool led_encendido = false;
 
