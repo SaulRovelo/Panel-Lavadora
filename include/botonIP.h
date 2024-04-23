@@ -3,6 +3,7 @@
 
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
+#include "variables.h"
 
 #define BUTTON 0
 #define S1 2
