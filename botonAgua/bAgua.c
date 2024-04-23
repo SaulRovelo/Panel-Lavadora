@@ -3,41 +3,35 @@
 #include "pico/stdlib.h"
 #include "bAgua.h"
 
-#define LED_PIN_1 0
-#define LED_PIN_2 1
-#define LED_PIN_3 2
-#define LED_PIN_4 3
-#define LED_PIN_5 4
-#define BUTTON_PIN_2 5
+#define LED_PIN_2 2
+#define LED_PIN_3 3
+#define LED_PIN_4 4
+#define LED_PIN_5 5
+#define LED_PIN_6 6
+#define BUTTON_PIN_7 7
 
 // Variable para controlar el estado de los LEDs
 static int contador = 0;
 
+// Función inicialización de pines
 void inicializar_leds_agua() {
-    // Función inicialización 
-    stdio_init_all();
-
     // Inicializamos los LEDs
-    gpio_init(LED_PIN_1);
-    gpio_set_dir(LED_PIN_1, GPIO_OUT);
-    gpio_init(LED_PIN_2);
-    gpio_set_dir(LED_PIN_2, GPIO_OUT);
-    gpio_init(LED_PIN_3);
-    gpio_set_dir(LED_PIN_3, GPIO_OUT);
-    gpio_init(LED_PIN_4);
-    gpio_set_dir(LED_PIN_4, GPIO_OUT);
-    gpio_init(LED_PIN_5);
-    gpio_set_dir(LED_PIN_5, GPIO_OUT);
+    //stdio_init_all();
+    for (int i = LED_PIN_2; i <= LED_PIN_5; i++) {
+        gpio_init(i);        // Inicializamos el pin
+        gpio_set_dir(i, GPIO_OUT); // Configuramos como salida
+    }
 
     // Inicializamos el botón
-    gpio_init(BUTTON_PIN_2);
-    gpio_set_dir(BUTTON_PIN_2, GPIO_IN);
-    gpio_pull_up(BUTTON_PIN_2);
+    gpio_init(BUTTON_PIN_7);
+    gpio_set_dir(BUTTON_PIN_7, GPIO_IN);
+    gpio_pull_up(BUTTON_PIN_7);
 }
 
 
+
 void control_leds_agua() {
-    if (gpio_get(BUTTON_PIN_2) == 0) {    // Verificar el estado del botón (0 o 1)
+    if (gpio_get(BUTTON_PIN_7) == 0) {    // Verificar el estado del botón (0 o 1)
         if (contador == 0) {
             // Enciende el siguiente LED y apaga el anterior
             gpio_put(LED_PIN_1, 1);
