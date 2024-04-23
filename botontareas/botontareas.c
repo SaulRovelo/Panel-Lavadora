@@ -73,7 +73,7 @@ int main(){
                 pulsaciones = 0; // Reiniciar contador de pulsaciones si es mayor que 3
             }
 
-            sleep_ms(200); // Espera para evitar rebotes del botón
+            
         } else {
             boton_presionado = false; // Reiniciar el indicador de presión del botón cuando no está siendo presionado
         }
