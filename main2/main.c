@@ -13,6 +13,8 @@ while (true)
        ciclos();
        sleep_ms(200);
        
+    }else{
+         boton_presionado = false;
     }
     
 }
