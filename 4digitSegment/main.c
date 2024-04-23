@@ -22,7 +22,7 @@ int main(){
     stdio_init_all();
     int val = 0;
 
-    for (int gpio = 0; gpio < firstGpio + 10; gpio++){
+    for (int gpio = 0; gpio < firstGpio + 11; gpio++){
         gpio_init(gpio);
         gpio_set_dir(gpio, GPIO_OUT);
         gpio_set_outover(gpio, GPIO_OUT);
