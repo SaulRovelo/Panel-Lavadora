@@ -3,6 +3,9 @@
 #include "bAgua.h"
 #include "variables.h"
 #include "botontemperatura.h"
+#include "potenciometroModosLavado.h"
+#include "botontareas.h"
+
 
 
 int main() {
@@ -13,6 +16,8 @@ int main() {
     inicializar_boton_encendido();
     inicializar_leds_agua();
     inicio();
+    inicializar_leds_ModosLavado();
+    inicializar();
 
     while (true) {
         // Verificar si se presiona el botón de encendido
@@ -29,10 +34,29 @@ int main() {
 
         // Si la lavadora está encendida, controlar los LEDs de agua
         if (lavadora_encendida) {
+            
+            leer_potenciometro();
+            encender_leds_potenciometro();
+            
             control_leds_agua();
+            
             temperatura();
             
-        }else{
+
+            if (condicion())
+            {
+            ciclos();
+            sleep_ms(200);
+            
+            }else{
+                
+                boton_presionado = false;
+            }
+
+            sleep_ms(200);
+            apagar_leds_potenciometro(); // ? Checar funcionamiento
+            
+        } else {
             apagar_y_reiniciar_leds();
         }
     }

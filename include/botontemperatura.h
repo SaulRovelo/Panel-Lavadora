@@ -73,6 +73,5 @@ void temperatura()
                 gpio_put(LED_PIN_20, 0); // Apagar LED 3
                 contadorT = 1;
             }
-            sleep_ms(200);
 }
  }

@@ -7,6 +7,7 @@ target_link_libraries(main
     pico_stdlib
     hardware_gpio
     pico_binary_info
+    hardware_adc
 )
 
 target_include_directories(main
