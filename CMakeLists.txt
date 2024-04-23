@@ -15,5 +15,6 @@ add_subdirectory(botonEncendido)
 add_subdirectory(prenderLed)
 add_subdirectory(botonAgua)
 add_subdirectory(mainTest)
+add_subdirectory(mainTestII)
 #add_subdirectory(botonInicio)
 # export PICO_SDK_PATH=../../pico-sdk
