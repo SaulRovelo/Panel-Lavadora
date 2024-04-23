@@ -1,7 +1,5 @@
 add_executable(mainTestII
     mainTestII.c
-    ../botonEncendido/boton_encendido.h
-    variables.h
 )
 
 
@@ -9,7 +7,12 @@ target_link_libraries(mainTestII
     pico_stdlib
     hardware_gpio
     pico_binary_info
-    
+
+)
+
+target_include_directories(mainTestII
+    PRIVATE
+    ../include
 )
 
 pico_add_extra_outputs(mainTestII)

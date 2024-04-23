@@ -1,7 +1,6 @@
 #include <pico/stdlib.h>
 #include <stdio.h>
 #include "variables.h"
-#include "boton_encendido.h"
 
 void inicializar_boton_encendido() {
     //stdio_init_all();   // Inicializa las funciones de E/S estándar
