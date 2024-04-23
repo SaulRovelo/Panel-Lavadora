@@ -39,7 +39,7 @@ void ciclos() {
             pulsaciones = 1; // Reiniciar contador de pulsaciones
         }
     }
-    
+
      tiempo_anterior = tiempo_actual; // Actualizar tiempo anterior
 
         if (!boton_presionado) {
@@ -53,5 +53,21 @@ void ciclos() {
                 pulsaciones = 0; // Reiniciar contador de pulsaciones
             }
         }
+    // Verificar número de pulsaciones
+        if (pulsaciones == 1) {
+            gpio_put(LED1_PIN, 1); // Encender LED 1
+            gpio_put(LED2_PIN, 0); // Apagar LED 2
+            gpio_put(LED3_PIN, 0); // Apagar LED 3
+        } else if (pulsaciones == 2) {
+            gpio_put(LED1_PIN, 0); // Apagar LED 1
+            gpio_put(LED2_PIN, 1); // Encender LED 2
+            gpio_put(LED3_PIN, 1); // Encender LED 3
+        } else if (pulsaciones == 3) {
+            gpio_put(LED1_PIN, 1); // Encender LED 1
+            gpio_put(LED2_PIN, 1); // Encender LED 2
+            gpio_put(LED3_PIN, 1); // Encender LED 3
+        }
+    } else {
+        boton_presionado = false; // Reiniciar el indicador de presión del botón cuando no está siendo presionado
+    }
 
-}
