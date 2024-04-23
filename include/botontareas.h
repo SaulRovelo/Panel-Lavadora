@@ -2,15 +2,15 @@
 #include <pico/stdlib.h>
 #include "variables.h"
 
-void inicializar() {
+void inicializar_leds_tareas() {
 
     // Inicialización de los LED
-    gpio_init(LED1_PIN);
-    gpio_set_dir(LED1_PIN, GPIO_OUT);
-    gpio_init(LED2_PIN);
-    gpio_set_dir(LED2_PIN, GPIO_OUT);
-    gpio_init(LED3_PIN);
-    gpio_set_dir(LED3_PIN, GPIO_OUT);
+    gpio_init(LED_PIN_14);
+    gpio_set_dir(LED_PIN_14, GPIO_OUT);
+    gpio_init(LED_PIN_15);
+    gpio_set_dir(LED_PIN_15, GPIO_OUT);
+    gpio_init(LED_PIN_16);
+    gpio_set_dir(LED_PIN_16, GPIO_OUT);
 
     // Inicialización del botón
     gpio_init(BUTTON_PIN);
@@ -18,52 +18,43 @@ void inicializar() {
     gpio_pull_up(BUTTON_PIN);
 }
 
-bool condicion() {
-    // Verificar el estado del botón (0 o 1)
-    return gpio_get(BUTTON_PIN) == 0;
-}
+void tareas(){
+    if (gpio_get(BUTTON_PIN) == 0) // Verificar el estado del botón (0 o 1)
+        {
+            // Enciende el siguiente LED y apaga el anterior
+            if (contadorTA == 1) 
+            {
+                gpio_put(LED_PIN_14, 1); // Encender LED 1
+                gpio_put(LED_PIN_15, 0); // Apagar LED 2
+                gpio_put(LED_PIN_16, 0); // Apagar LED 3
+               
+                contadorTA = 2;
+            } 
+            
+            else if (contadorTA == 2) 
+            {
+                gpio_put(LED_PIN_14, 0); // Encender LED 1
+                gpio_put(LED_PIN_15, 1); // Encender LED 2
+                gpio_put(LED_PIN_16, 1); // Apagar LED 3
+               
+                contadorTA = 3;
+            }
 
-void ciclos() {
-     
-    uint32_t tiempo_actual = time_us_32(); // Obtener tiempo actual en microsegundos
-
-        // Verificamos si han pasado menos de 500ms desde la última pulsación
-        if (tiempo_actual - tiempo_anterior < 500000) {
-            pulsaciones++; // Incrementar contador de pulsaciones
-        } else {
-            pulsaciones = 1; // Reiniciar contador de pulsaciones
-        }
-   
-
-     tiempo_anterior = tiempo_actual; // Actualizar tiempo anterior
-
-        if (!boton_presionado) {
-            tiempo_presionado = tiempo_actual; // Actualizar tiempo de inicio de presión del botón
-            boton_presionado = true; // Indicar que el botón está siendo presionado
-        } else {
-            if (tiempo_actual - tiempo_presionado >= 1000) { // Si el botón se mantiene presionado por 2 segundos
-                gpio_put(LED1_PIN, 0); // Apagar LED 1
-                gpio_put(LED2_PIN, 0); // Apagar LED 2
-                gpio_put(LED3_PIN, 0); // Apagar LED 3
-                pulsaciones = 0; // Reiniciar contador de pulsaciones
+            else if (contadorTA == 3) 
+            {
+                gpio_put(LED_PIN_14, 1); // Apagar LED 1
+                gpio_put(LED_PIN_15, 1); // encender LED 2
+                gpio_put(LED_PIN_16, 1); // apagar LED 3
+                
+                contadorTA = 4;
+            }
+            else if (contadorTA == 4) 
+            {
+                gpio_put(LED_PIN_14, 0); // Apagar LED 1
+                gpio_put(LED_PIN_15, 0); // encender LED 2
+                gpio_put(LED_PIN_16, 0); // encender LED 3
+                contadorTA = 1;
             }
             
-        }
-    // Verificar número de pulsaciones
-        if (pulsaciones == 1) {
-            gpio_put(LED1_PIN, 1); // Encender LED 1
-            gpio_put(LED2_PIN, 0); // Apagar LED 2
-            gpio_put(LED3_PIN, 0); // Apagar LED 3
-        } else if (pulsaciones == 2) {
-            gpio_put(LED1_PIN, 0); // Apagar LED 1
-            gpio_put(LED2_PIN, 1); // Encender LED 2
-            gpio_put(LED3_PIN, 1); // Encender LED 3
-        } else if (pulsaciones == 3) {
-            gpio_put(LED1_PIN, 1); // Encender LED 1
-            gpio_put(LED2_PIN, 1); // Encender LED 2
-            gpio_put(LED3_PIN, 1); // Encender LED 3
-        } else {
-            pulsaciones = 0;
-         }
-       
+            }
     }

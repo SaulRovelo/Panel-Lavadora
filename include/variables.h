@@ -4,10 +4,15 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
 
+// Variables Boton encendido/apagado
 #define TOTAL_GPIO_PINS 26
 
 #define LED_PIN_0 0        // Define el pin del LED
 #define BUTTON_PIN_1 1     // Define el pin del botón
+
+static bool led_encendido = false;
+
+// Variables boton de nivel de agua
 
 #define LED_PIN_2 2
 #define LED_PIN_3 3
@@ -15,8 +20,6 @@
 #define LED_PIN_5 5
 #define LED_PIN_6 6
 #define BUTTON_PIN_7 7
-
-static bool led_encendido = false;
 
 static int contador = 0; 
 
@@ -30,7 +33,7 @@ bool lavadora_encendida = false;
 #define BUTTON_PIN_21 21
 static int contadorT = 1;
 
-// Variables Potenciometro
+// Variables Potenciometro (Modos de lavado)
 
 #define POT_PIN 26
 #define FIRST_GPIO 8
@@ -52,13 +55,11 @@ static uint16_t adc_value;
 
 
 //Variables boton tareas
-#define LED1_PIN 14
-#define LED2_PIN 15
-#define LED3_PIN 16
+
+#define LED_PIN_14 14
+#define LED_PIN_15 15
+#define LED_PIN_16 16
 #define BUTTON_PIN 17
-uint32_t tiempo_anterior = 0;
-bool boton_presionado = false;
-uint32_t tiempo_presionado = 0;
-int pulsaciones = 0;
+static int contadorTA = 1;
 
 #endif // VARIABLES_H

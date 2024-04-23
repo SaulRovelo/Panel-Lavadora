@@ -10,6 +10,8 @@ void apagar_y_reiniciar_leds() {
     }
     // Reinicia el contador a su estado inicial
     contador = 0;
+    contadorTA = 1;
+    contadorT =1;
 }
 
 
@@ -36,7 +38,6 @@ void control_leds_encendido() {
     } else {   // Si el LED está encendido
         gpio_put(LED_PIN_0, 0);   // Apaga el LED
         led_encendido = false;   // Actualiza el estado del LED
-        //apagar_todos_los_leds();
         //printf("Lavadora apagada\n");   // Imprime un mensaje indicando que la lavadora está apagada
     }
     //sleep_ms(200);   // Espera 200 ms

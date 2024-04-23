@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <pico/stdlib.h>
-#include "Variables.h"
+#include "variables.h"
 
 
-void inicio(){
+void inicializar_Leds_temperatura(){
     // Inicializamos los LEDs
     gpio_init(LED_PIN_18);
     gpio_set_dir(LED_PIN_18, GPIO_OUT);
