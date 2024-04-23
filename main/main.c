@@ -1,4 +1,9 @@
+#include <pico/stdlib.h>
 #include "botonIP.h"
-#include<pico/stdlib.h>
 
 
+int main(){
+    initGpioSegmentDisplay();
+    initGpioButton();
+    displayLoop();        
+}
