@@ -1,36 +1,22 @@
 #include <stdio.h>
-#include <pico/stdlib.h>
 #include "pico/stdlib.h"
-#include "bAgua.h"
+#include "variables.h"
 
-#define LED_PIN_2 2
-#define LED_PIN_3 3
-#define LED_PIN_4 4
-#define LED_PIN_5 5
-#define LED_PIN_6 6
-#define BUTTON_PIN_7 7
-
-// Variable para controlar el estado de los LEDs
-//static int contador = 0;
 
 // Función inicialización de pines
 void inicializar_leds_agua() {
     // Inicializamos los LEDs
     //stdio_init_all();
-    for (int i = LED_PIN_2; i <= LED_PIN_5; i++) {
+    for (int i = LED_PIN_2; i <= LED_PIN_6; i++) {
         gpio_init(i);        // Inicializamos el pin
         gpio_set_dir(i, GPIO_OUT); // Configuramos como salida
     }
-
     // Inicializamos el botón
     gpio_init(BUTTON_PIN_7);
     gpio_set_dir(BUTTON_PIN_7, GPIO_IN);
     gpio_pull_up(BUTTON_PIN_7);
 }
 
-
-
-// Función de control de LEDs
 // Función de control de LEDs
 void control_leds_agua() {
     if (gpio_get(BUTTON_PIN_7) == 0) {    // Verificar el estado del botón (0 o 1)
@@ -84,7 +70,7 @@ void control_leds_agua() {
             printf("Ningún nivel seleccionado\n");
             contador = 0;
         }
-        //sleep_ms(200); 
+        sleep_ms(200); 
     }
 }
 

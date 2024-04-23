@@ -1,3 +1,9 @@
+#include <stdbool.h>
+#ifndef VARIABLES_H
+#define VARIABLES_H
+
+#define TOTAL_GPIO_PINS 26
+
 #define LED_PIN_0 0        // Define el pin del LED
 #define BUTTON_PIN_1 1     // Define el pin del botón
 
@@ -8,6 +14,10 @@
 #define LED_PIN_6 6
 #define BUTTON_PIN_7 7
 
-static bool led_encendido = false;  // Variable para controlar el estado del LED
+static bool led_encendido = false;
 
-static int contador = 0; // Variable para controlar el estado de los LEDs
+static int contador = 0; 
+
+bool lavadora_encendida = false;
+
+#endif // VARIABLES_H

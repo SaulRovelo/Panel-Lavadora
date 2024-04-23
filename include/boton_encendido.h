@@ -1,6 +1,17 @@
-#include <pico/stdlib.h>
 #include <stdio.h>
+#include "pico/stdlib.h"
 #include "variables.h"
+
+// Implementación de la función para apagar todos los LEDs y reiniciar el contador
+void apagar_y_reiniciar_leds() {
+    // Apaga todas las salidas GPIO
+    for (int pin = 0; pin < TOTAL_GPIO_PINS; pin++) {
+        gpio_put(pin, 0);
+    }
+    // Reinicia el contador a su estado inicial
+    contador = 0;
+}
+
 
 void inicializar_boton_encendido() {
     //stdio_init_all();   // Inicializa las funciones de E/S estándar
@@ -21,12 +32,14 @@ void control_leds_encendido() {
     if (!led_encendido) {   // Si el LED está apagado
         gpio_put(LED_PIN_0, 1);   // Enciende el LED
         led_encendido = true;   // Actualiza el estado del LED
-        printf("Lavadora encendida\n");   // Imprime un mensaje indicando que la lavadora está encendida
+        //printf("Lavadora encendida\n");   // Imprime un mensaje indicando que la lavadora está encendida
     } else {   // Si el LED está encendido
         gpio_put(LED_PIN_0, 0);   // Apaga el LED
         led_encendido = false;   // Actualiza el estado del LED
-        printf("Lavadora apagada\n");   // Imprime un mensaje indicando que la lavadora está apagada
+        //apagar_todos_los_leds();
+        //printf("Lavadora apagada\n");   // Imprime un mensaje indicando que la lavadora está apagada
     }
     //sleep_ms(200);   // Espera 200 ms
 }
+
 
