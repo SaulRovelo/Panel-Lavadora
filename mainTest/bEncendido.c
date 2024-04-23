@@ -5,8 +5,8 @@
 
 #define TOTAL_GPIO_PINS 26
 
-#define LED_PIN_6 0
-#define BUTTON_PIN_7 1
+#define LED_PIN_0 0
+#define BUTTON_PIN_1 1
 
 static bool led_encendido = false;
 
@@ -20,24 +20,24 @@ void apagar_todos_los_leds() {
 
 void inicializar_boton_encendido() {  //init()
     //stdio_init_all();
-    gpio_init(LED_PIN_6);
-    gpio_set_dir(LED_PIN_6, GPIO_OUT);
-    gpio_init(BUTTON_PIN_7);
-    gpio_set_dir(BUTTON_PIN_7, GPIO_IN);
-    gpio_pull_up(BUTTON_PIN_7);
+    gpio_init(LED_PIN_0);
+    gpio_set_dir(LED_PIN_0, GPIO_OUT);
+    gpio_init(BUTTON_PIN_1);
+    gpio_set_dir(BUTTON_PIN_1, GPIO_IN);
+    gpio_pull_up(BUTTON_PIN_1);
 }
 
 bool verificar_boton_encendido() {
-    return gpio_get(BUTTON_PIN_7) == 0;
+    return gpio_get(BUTTON_PIN_1) == 0;
 }
 
 void control_leds_encendido() {
     if (!led_encendido) {
-        gpio_put(LED_PIN_6, 1);
+        gpio_put(LED_PIN_0, 1);
         led_encendido = true;
         printf("Lavadora encendida\n");
     } else {
-        gpio_put(LED_PIN_6, 0);
+        gpio_put(LED_PIN_0, 0);
         led_encendido = false;
         printf("Lavadora apagada\n");
         // Llama a la función para apagar todos los LEDs
