@@ -76,7 +76,7 @@ void displayLoop(){
                 gpio_clr_mask(mask);
                 val--;
             } else {
-                printf("Ropa Limpia :))\n");
+                printf("Ropa Limpia :)\n");
                 continue;
             }
         } else {
