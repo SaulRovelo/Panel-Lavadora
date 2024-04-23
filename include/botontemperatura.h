@@ -3,6 +3,7 @@
 
 #include "Variables.h"
 
+
 void inicio(){
     // Inicializamos los LEDs
     gpio_init(LED_PIN_1);
@@ -21,7 +22,8 @@ void inicio(){
 
 }
 
-void temperatura(){
+void temperatura()
+{
     if (gpio_get(BUTTON_PIN) == 0) // Verificar el estado del botón (0 o 1)
         {
             // Enciende el siguiente LED y apaga el anterior
@@ -73,3 +75,4 @@ void temperatura(){
                 contador = 1;
             }
 }
+ }
