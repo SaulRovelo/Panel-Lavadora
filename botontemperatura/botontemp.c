@@ -46,7 +46,7 @@ void control(){
             
             else if (contador == 2) 
             {
-                gpio_put(LED_PIN_1, 1); // Apagar LED 1
+                gpio_put(LED_PIN_1, 1); // Encender LED 1
                 gpio_put(LED_PIN_2, 1); // Encender LED 2
                 gpio_put(LED_PIN_3, 0); // Apagar LED 3
                 printf("Temperatura 2\n");
@@ -56,23 +56,23 @@ void control(){
             else if (contador == 3) 
             {
                 gpio_put(LED_PIN_1, 0); // Apagar LED 1
-                gpio_put(LED_PIN_2, 1); // Apagar LED 2
-                gpio_put(LED_PIN_3, 0); // Encender LED 3
+                gpio_put(LED_PIN_2, 1); // encender LED 2
+                gpio_put(LED_PIN_3, 0); // apagar LED 3
                 printf("Temperatura 3\n");
                 contador = 4;
             }
             else if (contador == 4) 
             {
                 gpio_put(LED_PIN_1, 0); // Apagar LED 1
-                gpio_put(LED_PIN_2, 1); // Apagar LED 2
-                gpio_put(LED_PIN_3, 1); // Apagar LED 3
+                gpio_put(LED_PIN_2, 1); // encender LED 2
+                gpio_put(LED_PIN_3, 1); // encender LED 3
                 contador = 5;
             }
             else if (contador == 5) 
             {
                 gpio_put(LED_PIN_1, 0); // Apagar LED 1
                 gpio_put(LED_PIN_2, 0); // Apagar LED 2
-                gpio_put(LED_PIN_3, 1); // Apagar LED 3
+                gpio_put(LED_PIN_3, 1); // encender LED 3
                 contador = 6;
             }
             else if (contador == 6) 
@@ -82,7 +82,7 @@ void control(){
                 gpio_put(LED_PIN_3, 0); // Apagar LED 3
                 contador = 1;
             }
-            while(gpio_get(BUTTON_PIN) == 0); // Esperar hasta que el botón se suelte
+           sleep_ms(200);
         }
     }
     
