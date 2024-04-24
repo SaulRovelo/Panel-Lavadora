@@ -9,7 +9,7 @@ Para prototipar el botón de inicio/pausa del display:
 1. Raspberry pi pico W H
 2. Protoboard
 3. Boton DIL Push x1
-4. 10 Cables M/M 
+4. 12 Cables M/M 
 5. Display 7 Segmentos x1
 6. Resistencia 220 Ohms 5% x1
 
