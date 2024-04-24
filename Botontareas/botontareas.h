@@ -31,4 +31,31 @@ void control_leds_tareas(){
                 contadorTA = 2;
             } 
             
+            else if (contadorTA == 2) 
+            {
+                gpio_put(LED_PIN_14, 0); // Apagar  LED 1
+                gpio_put(LED_PIN_15, 1); // Encender LED 2
+                gpio_put(LED_PIN_16, 1); // Encender LED 3
+               
+                contadorTA = 3;
+            }
+
+            else if (contadorTA == 3) 
+            {
+                gpio_put(LED_PIN_14, 1); // Encender LED 1
+                gpio_put(LED_PIN_15, 1); // encender LED 2
+                gpio_put(LED_PIN_16, 1); // Encender LED 3
+                
+                contadorTA = 4;
+            }
+            else if (contadorTA == 4) 
+            {
+                gpio_put(LED_PIN_14, 0); // Apagar LED 1
+                gpio_put(LED_PIN_15, 0); // Apagar  LED 2
+                gpio_put(LED_PIN_16, 0); // Apagar  LED 3
+                contadorTA = 1;
+            }
+            
+            }
+
 }
