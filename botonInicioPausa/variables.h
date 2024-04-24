@@ -7,6 +7,7 @@
 
 int val = 9;
 bool paused = false;
+bool exit;
 uint64_t ultimaPulsacion = 0;
 
 #endif

@@ -42,7 +42,9 @@ bool deteccionDePulsacion(){
         }
     return paused;
 }
-void logicLoop(bool paused){        
+bool logicLoop(bool paused){
+    bool exit = true;
+    if (val != 0){        
         if (!paused) {
             if (val >= 0) {
                 int32_t mask = bits[val] << S1;
@@ -60,6 +62,10 @@ void logicLoop(bool paused){
             gpio_clr_mask(mask);
             //sleep_ms(500);
         }
+    } else {
+        exit = false;
+    }
+        return exit;
     }
 
 #endif

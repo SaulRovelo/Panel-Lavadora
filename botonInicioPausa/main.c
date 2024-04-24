@@ -6,8 +6,13 @@ int main(){
     stdio_init_all();
     initGpioSegmentDisplay();
     initGpioButton();
-    while (true){    
-        displayLoop();
+
+    while (true){ 
+        if (!exit){
+        paused = deteccionDePulsacion();    
+        exit = logicLoop(paused);
+        sleep_ms(700);
+        }
     }
     
 }
