@@ -1,4 +1,5 @@
 add_executable(botonInicioPausa
+    main.c
     botonIP.c
     botonIP.h
 )
