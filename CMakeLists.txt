@@ -12,3 +12,7 @@ set(PICO_BOARD pico_w)
 pico_sdk_init()
 
 # add_subdirectory(directorio)
+
+add_subdirectory(potenciometroModosLavado)
+
+# export PICO_SDK_PATH=../../pico-sdk
