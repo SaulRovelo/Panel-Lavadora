@@ -1,15 +1,13 @@
-add_executable(main2
+add_executable(Botontareas
     main.c
+    botontareas.h
+    variables.h 
+
 )
 
-target_link_libraries(main2
+target_link_libraries(Botontareas
     pico_stdlib
     hardware_adc
 )
 
-target_include_directories(main2
-    PRIVATE
-    ../include
-)
-
-pico_add_extra_outputs(main2)
+pico_add_extra_outputs(Botontareas)
