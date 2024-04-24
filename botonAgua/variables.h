@@ -15,6 +15,4 @@
 
 static int contador = 0; 
 
-bool lavadora_encendida = false;
-
 #endif // VARIABLES_H

@@ -1,5 +1,6 @@
 add_executable(botonEncendido
-    bEncendido.c
+    botonEncendido.c
+    variables.h
     #../common/sdk_inlines.c
 )
 

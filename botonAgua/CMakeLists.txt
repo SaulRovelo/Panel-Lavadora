@@ -1,5 +1,7 @@
 add_executable(botonAgua
-    bAgua.c
+    botonAgua.c
+    variables.h
+    # bAgua.c
 )
 
 target_link_libraries(botonAgua
