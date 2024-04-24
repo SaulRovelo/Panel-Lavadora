@@ -1,4 +1,6 @@
+#include"pico/stdio.h"
 #include "variables.h"
+#include "pico/time.h"
 #include <hardware/gpio.h>
 
 #ifndef BOTONIP_H
@@ -35,8 +37,8 @@ void initGpioButton(){
 
 void displayLoop(){
     stdio_init_all();
-    init_gpio_segment_display();
-    init_gpio_button_segment_display();
+    initGpioSegmentDisplay();
+    initGpioButton();
 
     int val = 9;
     bool paused = false;

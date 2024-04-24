@@ -5,6 +5,7 @@
         "variables.h": "c",
         "botonip.h": "c",
         "uart.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "time.h": "c"
     },
 }
