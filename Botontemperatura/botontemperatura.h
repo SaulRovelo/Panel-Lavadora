@@ -20,3 +20,16 @@ void inicializar_Leds_temperatura(){
     gpio_pull_up(BUTTON_PIN_27);
 
 }
+void control_leds_temperatura()
+{
+    if (gpio_get(BUTTON_PIN_27) == 0) // Verificar el estado del botón (0 o 1)
+        {
+            // Enciende el siguiente LED y apaga el anterior
+            if (contadorT == 1) 
+            {
+                gpio_put(LED_PIN_18, 1); // Encender LED 1
+                gpio_put(LED_PIN_21, 0); // Apagar LED 2
+                gpio_put(LED_PIN_22, 0); // Apagar LED 3
+                printf("Temperatura 1\n");
+                contadorT = 2;
+            } 
