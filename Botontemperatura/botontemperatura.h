@@ -33,3 +33,43 @@ void control_leds_temperatura()
                 printf("Temperatura 1\n");
                 contadorT = 2;
             } 
+            else if (contadorT == 2) 
+            {
+                gpio_put(LED_PIN_18, 1); // Encender LED 1
+                gpio_put(LED_PIN_21, 1); // Encender LED 2
+                gpio_put(LED_PIN_22, 0); // Apagar LED 3
+                printf("Temperatura 2\n");
+                contadorT = 3;
+            }
+
+            else if (contadorT == 3) 
+            {
+                gpio_put(LED_PIN_18, 0); // Apagar LED 1
+                gpio_put(LED_PIN_21, 1); // encender LED 2
+                gpio_put(LED_PIN_22, 0); // apagar LED 3
+                printf("Temperatura 3\n");
+                contadorT = 4;
+            }
+            else if (contadorT == 4) 
+            {
+                gpio_put(LED_PIN_18, 0); // Apagar LED 1
+                gpio_put(LED_PIN_21, 1); // encender LED 2
+                gpio_put(LED_PIN_22, 1); // encender LED 3
+                contadorT = 5;
+            }
+            else if (contadorT == 5) 
+            {
+                gpio_put(LED_PIN_18, 0); // Apagar LED 1
+                gpio_put(LED_PIN_21, 0); // Apagar LED 2
+                gpio_put(LED_PIN_22, 1); // encender LED 3
+                contadorT = 6;
+            }
+            else if (contadorT == 6) 
+            {
+                gpio_put(LED_PIN_18, 0); // Apagar LED 1
+                gpio_put(LED_PIN_21, 0); // Apagar LED 2
+                gpio_put(LED_PIN_22, 0); // Apagar LED 3
+                contadorT = 1;
+            }
+}
+ }
