@@ -3,7 +3,11 @@
 #include "variables.h"
 
 int main(){
+    stdio_init_all();
     initGpioSegmentDisplay();
     initGpioButton();
-    displayLoop();
+    while (true){    
+        displayLoop();
+    }
+    
 }

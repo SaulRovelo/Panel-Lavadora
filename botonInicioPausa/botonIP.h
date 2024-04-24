@@ -35,18 +35,9 @@ void initGpioButton(){
     gpio_pull_up(BUTTON);
 }
 
-void displayLoop(){
-    stdio_init_all();
-    initGpioSegmentDisplay();
-    initGpioButton();
-
-    int val = 9;
-    bool paused = false;
-    uint64_t ultimaPulsacion = 0;
-    const uint64_t debounce_time = 300;
-
-    while (true) {
-        if (!gpio_get(BUTTON) && to_ms_since_boot(get_absolute_time()) - ultimaPulsacion > debounce_time) {
+    
+void displayLoop(){        
+        if (!gpio_get(BUTTON) && to_ms_since_boot(get_absolute_time()) - ultimaPulsacion > debounce_time){
             paused = !paused;
             ultimaPulsacion = to_ms_since_boot(get_absolute_time());
         }
@@ -55,21 +46,19 @@ void displayLoop(){
             if (val >= 0) {
                 int32_t mask = bits[val] << S1;
                 gpio_set_mask(mask);
-                sleep_ms(1500);
+                //sleep_ms(1500);
                 gpio_clr_mask(mask);
                 val--;
             } else {
                 printf("Ropa Limpia :))\n");
-                break;
             }
         } else {
             int32_t mask = bits[val] << S1;
             gpio_set_mask(mask);
-            sleep_ms(500);
+            //sleep_ms(500);
             gpio_clr_mask(mask);
-            sleep_ms(500);
+            //sleep_ms(500);
         }
     }
-}
 
 #endif
