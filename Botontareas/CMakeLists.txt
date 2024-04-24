@@ -1,5 +1,5 @@
 add_executable(Botontareas
-    main.c
+    botontareas.c
     botontareas.h
     variables.h 
 
