@@ -1,4 +1,4 @@
-#  mainTest Integracion Boton encendido/apagado y Nivel de agua - Panel de lavadora
+# Integracion Boton inicio/pausa y display - Panel de lavadora
 
 # Implementacion 
 Este código en lenguaje C, diseñado para el microcontrolador Raspberry Pi Pico W H, que modularizar el display y boton de inicio/pausa del panel de la lavadora.
