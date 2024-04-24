@@ -1,13 +1,12 @@
-# add_executable(potenciometroModosLavado
-#     # # potenciometroModosLavado.c
-#     # variables.h
-#     # potenciometroModosLavado.h
-#     # mainTest.c
-# )
+add_executable(potenciometroModosLavado
+    variables.h
+    potenciometroModosLavado.h
+    mainTest.c
+)
 
-# target_link_libraries(potenciometroModosLavado
-#     pico_stdlib
-#     hardware_adc
-# )
+target_link_libraries(potenciometroModosLavado
+    pico_stdlib
+    hardware_adc
+)
 
-# pico_add_extra_outputs(potenciometroModosLavado)
+pico_add_extra_outputs(potenciometroModosLavado)
