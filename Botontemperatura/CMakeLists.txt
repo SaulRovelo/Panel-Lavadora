@@ -5,9 +5,9 @@ add_executable(Botontemperatura
 
 )
 
-target_link_libraries(Botontareas
+target_link_libraries(Botontemperatura
     pico_stdlib
     hardware_adc
 )
 
-pico_add_extra_outputs(Botontareas)
+pico_add_extra_outputs(Botontemperatura)
