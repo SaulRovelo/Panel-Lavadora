@@ -8,7 +8,6 @@ int main(){
 
     while (true){    
         logicLoop();
-        sleep_ms(700);
     }
     
 }

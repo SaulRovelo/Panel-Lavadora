@@ -24,6 +24,7 @@ void inicializarBotonInicioPausa(){
     for (int gpio = S1; gpio < S1 + 7; gpio++){
         gpio_init(gpio);
         gpio_set_dir(gpio, GPIO_OUT);
+        //gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);
     }
 
     //Inicializamos el GPIO para el bóton
@@ -42,7 +43,7 @@ void logicLoop(){
             if (val >= 0) {
                 int32_t mask = bits[val] << S1;
                 gpio_set_mask(mask);
-                //sleep_ms(1500);
+                sleep_ms(1500);
                 gpio_clr_mask(mask);
                 val--;
             } else {
@@ -51,9 +52,9 @@ void logicLoop(){
         } else {
             int32_t mask = bits[val] << S1;
             gpio_set_mask(mask);
-            //sleep_ms(500);
+            sleep_ms(500);
             gpio_clr_mask(mask);
-            //sleep_ms(500);
+            sleep_ms(500);
         }
 }
 
