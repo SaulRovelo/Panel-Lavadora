@@ -5,7 +5,7 @@
 
 int main(){
     stdio_init_all();
-    /* inicializar();
+    inicializar();
 
 while (true)
 {
@@ -18,12 +18,14 @@ while (true)
          boton_presionado = false;
     }
        
-}*/
-inicio();
+}
+
+   /* inicio();
     while (true)
     {
+
         temperatura();
         sleep_ms(100);
-    }
+    }*/
     
 }

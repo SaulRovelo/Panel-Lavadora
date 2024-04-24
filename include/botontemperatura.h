@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <pico/stdlib.h>
 
 #include "Variables.h"
@@ -75,4 +75,4 @@ void temperatura()
                 contador = 1;
             }
 }
- }
+ }*/
