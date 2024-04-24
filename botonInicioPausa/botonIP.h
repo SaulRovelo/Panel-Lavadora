@@ -19,32 +19,25 @@ static int bits[10] = {
     0x67  // 9
 };
 
-void initGpioSegmentDisplay(){
+void inicializarBotonInicioPausa(){
     //Inicializamos los GPIO para cada segmento del display
     for (int gpio = S1; gpio < S1 + 7; gpio++){
         gpio_init(gpio);
         gpio_set_dir(gpio, GPIO_OUT);
     }
-    
-}
 
-void initGpioButton(){
     //Inicializamos el GPIO para el bóton
     gpio_init(BUTTON);
     gpio_set_dir(BUTTON,GPIO_IN);
     gpio_pull_up(BUTTON);
+    
 }
 
-bool deteccionDePulsacion(){
+void logicLoop(){
     if (!gpio_get(BUTTON) && to_ms_since_boot(get_absolute_time()) - ultimaPulsacion > debounce_time){
             paused = !paused;
             ultimaPulsacion = to_ms_since_boot(get_absolute_time());
-        }
-    return paused;
-}
-bool logicLoop(bool paused){
-    bool exit = true;
-    if (val != 0){        
+        }     
         if (!paused) {
             if (val >= 0) {
                 int32_t mask = bits[val] << S1;
@@ -62,10 +55,6 @@ bool logicLoop(bool paused){
             gpio_clr_mask(mask);
             //sleep_ms(500);
         }
-    } else {
-        exit = false;
-    }
-        return exit;
-    }
+}
 
 #endif

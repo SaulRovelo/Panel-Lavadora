@@ -4,15 +4,11 @@
 
 int main(){
     stdio_init_all();
-    initGpioSegmentDisplay();
-    initGpioButton();
+    inicializarBotonInicioPausa();
 
-    while (true){ 
-        if (!exit){
-        paused = deteccionDePulsacion();    
-        exit = logicLoop(paused);
+    while (true){    
+        logicLoop();
         sleep_ms(700);
-        }
     }
     
 }
