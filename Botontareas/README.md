@@ -17,7 +17,6 @@ Este código, desarrollado en lenguaje C, tiene como propósito gestionar un con
 
 ## Funcionalidades
 El sistema tiene las siguientes características:
-
 Al presionar una vez, se enciende el primer LED. Al presionar nuevamente, se enciende el segundo LED y el tercer LED. Si se vuelve a presionar, se encienden los tres LEDs simultáneamente. Y si se presiona otra vez, se apagan todos los LEDs.
 
 ## Ejemplo de ensamble del prototipo
