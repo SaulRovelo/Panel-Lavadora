@@ -1,4 +1,8 @@
-#include "botonIP.h"
+#include "variables.h"
+#include <hardware/gpio.h>
+
+#ifndef BOTONIP_H
+#define BOTONIP_H
 // Este array convierte un número del 0 al 9 en un patrón de bits para enviar a los GPIOs
 static int bits[10] = {
     0x3f, // 0
@@ -66,4 +70,4 @@ void displayLoop(){
     }
 }
 
-
+#endif
