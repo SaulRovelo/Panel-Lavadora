@@ -35,13 +35,14 @@ void initGpioButton(){
     gpio_pull_up(BUTTON);
 }
 
-    
-void displayLoop(){        
-        if (!gpio_get(BUTTON) && to_ms_since_boot(get_absolute_time()) - ultimaPulsacion > debounce_time){
+bool deteccionDePulsacion(){
+    if (!gpio_get(BUTTON) && to_ms_since_boot(get_absolute_time()) - ultimaPulsacion > debounce_time){
             paused = !paused;
             ultimaPulsacion = to_ms_since_boot(get_absolute_time());
         }
-
+    return paused;
+}
+void logicLoop(bool paused){        
         if (!paused) {
             if (val >= 0) {
                 int32_t mask = bits[val] << S1;
