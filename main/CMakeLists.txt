@@ -2,7 +2,6 @@ add_executable(mainTest
     main.c
     botonIP.c
     botonIP.h
-    ../common/sdk_inlines.c
 
 )
 

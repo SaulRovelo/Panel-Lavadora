@@ -1,8 +1,6 @@
 add_executable(botonInicioPausa
     botonIP.c
     botonIP.h
-    ../common/sdk_inlines.c
-
 )
 
 target_link_libraries(botonInicioPausa
