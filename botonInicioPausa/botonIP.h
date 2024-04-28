@@ -40,21 +40,21 @@ void logicLoop(){
             ultimaPulsacion = to_ms_since_boot(get_absolute_time());
         }     
         if (!paused) {
-            if (val >= 0) {
-                int32_t mask = bits[val] << S1;
-                gpio_set_mask(mask);
-                sleep_ms(1500);
-                gpio_clr_mask(mask);
-                val--;
-            } else {
-                printf("Ropa Limpia :))\n");
-            }
-        } else {
             int32_t mask = bits[val] << S1;
             gpio_set_mask(mask);
             sleep_ms(500);
             gpio_clr_mask(mask);
             sleep_ms(500);
+        } else {
+            if (val >= 0) {
+                int32_t mask = bits[val] << S1;
+                gpio_set_mask(mask);
+                sleep_ms(1000);
+                gpio_clr_mask(mask);
+                val--;
+            } else {
+                printf("Ropa Limpia :))\n");
+            }
         }
 }
 
