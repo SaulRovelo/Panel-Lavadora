@@ -30,6 +30,8 @@ El prototipo se monta de la siguiente manera:
 
 <img src="./boton temperatura.png" style="max-height:600px;">
 
+<img src="./boton de flujo.png" style="max-height:400px;">
+
 ## Instalación y Uso
 1. Clona este repositorio en tu dispositivo.
 1. Conecta los componentes a la Raspberry Pi Pico W y a la protoboard según el esquema de conexión proporcionado.
