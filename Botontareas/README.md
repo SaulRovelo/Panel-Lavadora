@@ -33,7 +33,7 @@ El prototipo se monta de la siguiente manera:
 <img src="./boton tareas.png" style="max-height:600px;">
 
 ## Diagrama de flujo del programa modularizado
-<img src="./Diagrama de flujo.png" style="max-height:400px;">
+<img src="./Diagrama de flujo.png" style="max-height:800px;">
 
 ## Instalación y Uso
 1. Clona este repositorio en tu dispositivo.
