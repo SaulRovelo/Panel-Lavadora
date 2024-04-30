@@ -30,6 +30,7 @@ El prototipo se monta de la siguiente manera:
 
 <img src="./boton temperatura.png" style="max-height:600px;">
 
+## Diagrama de Flujo del programa modularizado
 <img src="./Diagrama de flujo.png" style="max-height:400px;">
 
 ## Instalación y Uso
