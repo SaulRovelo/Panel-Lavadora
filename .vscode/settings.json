@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "binary_info.h": "c",
+        "stdlib.h": "c",
+        "variables.h": "c",
+        "botonip.h": "c",
+        "uart.h": "c",
+        "stdio.h": "c",
+        "time.h": "c"
+    },
+}
