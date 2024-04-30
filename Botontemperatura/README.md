@@ -30,7 +30,7 @@ El prototipo se monta de la siguiente manera:
 
 <img src="./boton temperatura.png" style="max-height:600px;">
 
-<img src="./boton de flujo.png" style="max-height:400px;">
+<img src="./Diagrama de flujo.png" style="max-height:400px;">
 
 ## Instalación y Uso
 1. Clona este repositorio en tu dispositivo.
