@@ -24,8 +24,11 @@ El programa utiliza los siguientes componentes:
 ## Prototipo
 <img src="./main.png" style="max-height:600px;">
 
+## Prototipo Boton inicio/pausa
+
+
 ## Diagrama de flujo
-<img src="./diagramaEncendido.png" style="max-height:600px;">
+<img src="./flujo main.jpeg" style="max-height:800px;">
 
 ## Materiales
 1. Raspberry pi pico W H
