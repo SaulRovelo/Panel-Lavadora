@@ -32,6 +32,9 @@ El prototipo se monta de la siguiente manera:
 
 <img src="./boton tareas.png" style="max-height:600px;">
 
+## Diagrama de Flujo del programa modularizado
+<img src="./Diagrama de flujo.png" style="max-height:600px;">
+
 ## Instalación y Uso
 1. Clona este repositorio en tu dispositivo.
 1. Conecta los componentes a la Raspberry Pi Pico W y a la protoboard según el esquema de conexión proporcionado.
