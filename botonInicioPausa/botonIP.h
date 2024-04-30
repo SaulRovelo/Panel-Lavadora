@@ -31,7 +31,9 @@ void inicializarBotonInicioPausa(){
     gpio_init(BUTTON);
     gpio_set_dir(BUTTON,GPIO_IN);
     gpio_pull_up(BUTTON);
-    
+    //Inicializamos el led
+    gpio_init(LED);
+    gpio_set_dir(LED, GPIO_OUT);
 }
 
 void logicLoop(){
@@ -39,16 +41,19 @@ void logicLoop(){
             paused = !paused;
             ultimaPulsacion = to_ms_since_boot(get_absolute_time());
         }     
-        if (!paused) {
+        if (paused) {
             int32_t mask = bits[val] << S1;
+            gpio_put(LED, 1);
             gpio_set_mask(mask);
             sleep_ms(500);
+            gpio_put(LED, 0);
             gpio_clr_mask(mask);
             sleep_ms(500);
         } else {
             if (val >= 0) {
                 int32_t mask = bits[val] << S1;
                 gpio_set_mask(mask);
+                gpio_put(LED, 1);
                 sleep_ms(1000);
                 gpio_clr_mask(mask);
                 val--;
