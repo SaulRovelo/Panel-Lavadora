@@ -11,12 +11,6 @@ set(PICO_BOARD pico_w)
 # Initialize the SDK
 pico_sdk_init()
 
-add_subdirectory(botonEncendido)
-add_subdirectory(botonEncenderApagar)
-#add_subdirectory(botontemperatura)
-add_subdirectory(botontareasCiclos)
-#add_subdirectory(botontareas) 
-#add_subdirectory(main)
-add_subdirectory(main2)
+
 add_subdirectory(Botontareas) 
 add_subdirectory(Botontemperatura)
