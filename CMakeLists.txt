@@ -11,14 +11,8 @@ set(PICO_BOARD pico_w)
 # Initialize the SDK
 pico_sdk_init()
 
-<<<<<<< HEAD
 # add_subdirectory(directorio)
 
 add_subdirectory(potenciometroModosLavado)
 
-=======
-add_subdirectory(botonInicioPausa)
-#add_subdirectory(4digitSegment)
-add_subdirectory(main)
->>>>>>> Yayo
 # export PICO_SDK_PATH=../../pico-sdk
