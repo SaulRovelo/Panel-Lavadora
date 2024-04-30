@@ -6,9 +6,11 @@ Este código es un programa para controlar una lavadora utilizando un microcontr
 
 ## Implementacion
 
-El código implementado en lenguaje C para el microcontrolador Raspberry Pi Pico W H se centra en controlar las funciones básicas de una lavadora. Al iniciar, se inicializan diversos componentes, como el botón de encendido, los LEDs indicadores de nivel de agua, temperatura, tareas de lavado y modos de lavado. Dentro del bucle principal, el programa verifica continuamente el estado del botón de encendido y, si se activa, alterna el estado de la lavadora y actualiza los LEDs correspondientes para reflejar este cambio. Si la lavadora está encendida, el usuario puede ajustar la diversas funcionalidades.
+El código implementado en lenguaje C para el microcontrolador Raspberry Pi Pico W H se centra en controlar las funciones básicas de una lavadora. Al iniciar, se inicializan diversos componentes, con el botón de encendido, los LEDs indicadores de nivel de agua, temperatura, tareas de lavado y modos de lavado. Dentro del bucle principal, el programa verifica continuamente el estado del botón de encendido y, si se activa, alterna el estado de la lavadora y actualiza los LEDs correspondientes para reflejar este cambio. Si la lavadora está encendida, el usuario puede ajustar la diversas funcionalidades.
 
-Además, se ha dejado espacio para implementar la función de inicio/pausa del ciclo de lavado, cuya lógica se encuentra desarrollada pero debido a que se agotaron los GPIO no se puede inconporar esa funcionalidad en este codigo. Una vez cargado el programa en la placa Raspberry Pi Pico W H y con el entorno de desarrollo configurado correctamente, los usuarios pueden interactuar con la simulación de la lavadora utilizando el botónes y el potenciómetro para ajustar los parámetros de lavado según sea necesario.
+Además, se ha dejado espacio para implementar la función de inicio/pausa del ciclo de lavado, cuya lógica se encuentra desarrollada pero debido a que se agotaron los GPIO no se puede inconporar esa funcionalidad en este codigo. 
+
+Una vez cargado el programa en la placa Raspberry Pi Pico W H y con el entorno de desarrollo configurado correctamente, los usuarios pueden interactuar con la simulación de la lavadora utilizando el botónes y el potenciómetro para ajustar los parámetros de lavado según sea necesario.
 
 ## Componentes
 
@@ -42,7 +44,7 @@ El programa utiliza los siguientes componentes:
 
 
 ## Funcionamiento
-El programa se ejecuta en un bucle infinito donde se verifican las interacciones del usuario con el botón de encendido. Cuando se presiona el botón de encendido, se alternará el estado de la lavadora entre encendida y apagada. Además, se controlará el encendido y apagado de los LEDs correspondientes a cada función de la lavadora que son ademas de  la función relacionada con el botón de inicio y pausa de la lavadora. Sin embargo, esta funcionalidad no está completamente implementada en el código actual ademas de Nivel de agua, Temperatura, Tareas de lavado, Modos de lavado.
+El programa se ejecuta en un bucle infinito donde se verifican las interacciones del usuario con el botón de encendido. Cuando se presiona el botón de encendido, se alternará el estado de la lavadora entre encendida y apagada. Además, se controlará el encendido y apagado de los LEDs correspondientes a cada función de la lavadora que son ademas de  la función relacionada con el botón de inicio y pausa de la lavadora. Sin embargo, esta funcionalidad no está completamente implementada en el código actual pero todo las demas funcionalidades como ivel de agua, Temperatura, Tareas de lavado, Modos de lavado, si aladieron al main.
 
 Si la lavadora está encendida, se le permite al usuario ajustar ciertos parámetros utilizando el potenciómetro o botones para controlar el nivel de agua, temperatura, etc.
 
