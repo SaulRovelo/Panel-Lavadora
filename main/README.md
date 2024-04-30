@@ -25,6 +25,7 @@ El programa utiliza los siguientes componentes:
 <img src="./main.png" style="max-height:600px;">
 
 ## Prototipo Boton inicio/pausa
+<img src="./inicio_pausa.png" style="max-height:600px;">
 
 
 ## Diagrama de flujo
