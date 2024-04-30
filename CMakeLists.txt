@@ -8,11 +8,16 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(PICO_BOARD pico_w)
 
+
 # Initialize the SDK
 pico_sdk_init()
 
-# add_subdirectory(directorio)
 
-add_subdirectory(potenciometroModosLavado)
-
+add_subdirectory(botonEncendido)
+add_subdirectory(botonAgua)
+add_subdirectory(main)
+#add_subdirectory(prenderLed)
+#add_subdirectory(mainTest)
+#add_subdirectory(mainTestII)
+#add_subdirectory(botonInicio)
 # export PICO_SDK_PATH=../../pico-sdk
