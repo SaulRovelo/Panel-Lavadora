@@ -21,6 +21,9 @@ Este código implementa un programa para controlar una lavadora mediante Raspber
 <img src="botonInicioPausa.png" style="max-height: 800px;">
 Nota:Los GPIO utilizados pueden variar dependiendo como se conecta.
 
+# Diagrama de flujo
+<img src="DiagramaDeFlujo.png" style="max-height: 800px;" >
+
 
 # Pasos
 1. Clonar el repositorio.
