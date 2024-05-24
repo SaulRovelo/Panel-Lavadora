@@ -21,13 +21,14 @@ void inicializar_leds_tareas() {
 void control_leds_tareas(){
     if (gpio_get(BUTTON_PIN) == 0) // Verificar el estado del botón (0 o 1)
         {
+            uart_puts(uart0, "control_leds_tareas");
             // Enciende el siguiente LED y apaga el anterior
             if (contadorTA == 1) 
             {
                 gpio_put(LED_PIN_14, 1); // Encender LED 1
                 gpio_put(LED_PIN_15, 0); // Apagar LED 2
                 gpio_put(LED_PIN_16, 0); // Apagar LED 3
-               
+            
                 contadorTA = 2;
             } 
             
@@ -36,7 +37,7 @@ void control_leds_tareas(){
                 gpio_put(LED_PIN_14, 0); // Encender LED 1
                 gpio_put(LED_PIN_15, 1); // Encender LED 2
                 gpio_put(LED_PIN_16, 1); // Apagar LED 3
-               
+            
                 contadorTA = 3;
             }
 

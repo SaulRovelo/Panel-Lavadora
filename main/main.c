@@ -25,6 +25,7 @@ int main() {
     while (true) {
         // Verificar si se presiona el botón de encendido
         if (verificar_boton_encendido()) {
+            uart_puts(uart0, "verificar_boton_encendido");
             // Controlar el estado de los LEDs de encendido
             control_leds_encendido();
             // Alternar el estado de la lavadora

@@ -20,6 +20,7 @@ void inicializar_leds_agua() {
 // Función de control de LEDs
 void control_leds_agua() {
     if (gpio_get(BUTTON_PIN_7) == 0) {    // Verificar el estado del botón (0 o 1)
+        uart_puts(uart0, "control_leds_agua");
         if (contador == 0) {
             // Enciende el siguiente LED y apaga el anterior
             gpio_put(LED_PIN_2, 1);

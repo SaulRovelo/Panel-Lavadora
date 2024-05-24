@@ -25,6 +25,7 @@ void control_leds_temperatura()
 {
     if (gpio_get(BUTTON_PIN_27) == 0) // Verificar el estado del botón (0 o 1)
         {
+            uart_puts(uart0, "control_leds_temperatura");
             // Enciende el siguiente LED y apaga el anterior
             if (contadorT == 1) 
             {
