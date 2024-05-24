@@ -16,6 +16,11 @@ int main() {
     inicializar_leds_ModosLavado();
     inicializar_Leds_temperatura();
     inicializar_leds_tareas();
+    
+    // Configurar UART0
+    uart_init(uart0, 115200);
+    gpio_set_function(0, GPIO_FUNC_UART); // TX
+    gpio_set_function(1, GPIO_FUNC_UART); // RX
 
     while (true) {
         // Verificar si se presiona el botón de encendido
