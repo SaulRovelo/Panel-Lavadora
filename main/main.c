@@ -7,6 +7,7 @@
 #include "botontareas.h"
 #include "hardware/uart.h"
 
+
 int main() {
     // Inicialización de las funciones de entrada/salida estándar
     stdio_init_all();
@@ -26,7 +27,8 @@ int main() {
     // Configurar UART
     uart_set_format(uart0, 8, 1, UART_PARITY_NONE);
     uart_set_fifo_enabled(uart0, false);
-    
+
+    char buffer[1];
 
     while (true) {
         // Verificar si se presiona el botón de encendido
@@ -39,26 +41,43 @@ int main() {
             // Imprimir el estado actual de la lavadora
             printf("Lavadora %s\n", lavadora_encendida ? "encendida" : "apagada");
             //sleep_ms(sleep_duration_ms);
+
         }
-        char buffer[1];
+
+        
         // Si la lavadora está encendida, Controla las funcionalidades
         if (lavadora_encendida) {
             if (uart_is_readable(uart0)) {
                 uart_read_blocking(uart0, (uint8_t*)buffer, 1);
                 if (buffer[0] == '1') { 
-                    printf("Inicio\n");
-                    //uart_puts(uart0, "Inicio");
-                } else {
-                    apagar_leds_potenciometro(); // Apaga los leds del potenciometro
-                    printf("Putp\n");
-                    leer_potenciometro(); // Lee el valor del potenciometro y asigna un valor entre 0 a 5 a una variable.
-                    encender_leds_potenciometro(); // Enciende los leds segun el valor del potenciometro.
-                    control_leds_agua(); // Enciende los led's de nivel de agua al presionar el boton
-                    control_leds_temperatura(); // Enciende los led's de temperatura al presionar el boton
-                    control_leds_tareas(); // Enciende los led's de Tareas de lavado al presionar el boton
-                    sleep_ms(sleep_duration_ms); // Sleep de 125 ms
+                    // Cambiar el estado de inicio
+                    inicio = !inicio;
+                } else if (buffer[0] == '0') {
+                    // Cambiar el estado de pausa
+                    printf("Pausa\n");
+                    uart_puts(uart0, "0");
                 }
-            } 
+            }
+
+            if (inicio) {
+                uart_puts(uart0, "0");
+                // Código cuando la lavadora está en estado de inicio
+                printf("Lavadora en funcionamiento...\n");
+                leer_potenciometro(); // Lee el valor del potenciometro y asigna un valor entre 0 a 5 a una variable.
+                encender_leds_potenciometro(); // Enciende los leds según el valor del potenciometro.
+                control_leds_agua(); // Enciende los led's de nivel de agua al presionar el botón
+                control_leds_temperatura(); // Enciende los led's de temperatura al presionar el botón
+                control_leds_tareas(); // Enciende los led's de Tareas de lavado al presionar el botón
+                sleep_ms(sleep_duration_ms); // Sleep de 125 ms
+                apagar_leds_potenciometro(); // Apaga los leds del potenciometro
+            } else {
+                printf("Inicio\n");
+                uart_puts(uart0, "1");
+                sleep_ms(sleep_duration_ms); // Sleep de 125 ms
+                //char buffer[20];
+                //sprintf(buffer, "%d", contador);
+                //uart_puts(uart0, buffer);
+            }
         } else {
             apagar_y_reiniciar_leds(); // Implementación de la función para apagar todos los LEDs y reiniciar los leds.
         }

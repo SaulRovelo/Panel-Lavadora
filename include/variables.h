@@ -21,6 +21,7 @@ static bool led_encendido = false;
 #define LED_PIN_6 6
 #define BUTTON_PIN_7 7
 
+
 static int contador = 0; 
 
 bool lavadora_encendida = false;
@@ -63,9 +64,9 @@ static uint16_t adc_value;
 static int contadorTA = 1;
 
 
-uint32_t sleep_duration_ms = 125;
+uint32_t sleep_duration_ms = 200;
 
 #define BUTTON_PIN_28 28
-static bool inicio = false;
+static bool inicio = true;
 
 #endif // VARIABLES_H

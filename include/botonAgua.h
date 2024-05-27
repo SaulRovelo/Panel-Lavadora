@@ -19,7 +19,7 @@ void inicializar_leds_agua() {
 
 // Función de control de LEDs
 void control_leds_agua() {
-        uart_puts(uart0, "control_leds_agua 4"); 
+        //uart_puts(uart0, "control_leds_agua 4"); 
     if (gpio_get(BUTTON_PIN_7) == 0) {    // Verificar el estado del botón (0 o 1)
         if (contador == 0) {
             // Mandar a python "control_agua 0"
