@@ -1,0 +1,1 @@
+lavadora_encendida = False

@@ -58,6 +58,7 @@ void control_leds_temperatura()
                 gpio_put(LED_PIN_18, 0); // Apagar LED 1
                 gpio_put(LED_PIN_21, 1); // encender LED 2
                 gpio_put(LED_PIN_22, 1); // encender LED 3
+                printf("Temperatura 4\n");
                 contadorT = 5;
             }
             else if (contadorT == 5) 
@@ -65,6 +66,7 @@ void control_leds_temperatura()
                 gpio_put(LED_PIN_18, 0); // Apagar LED 1
                 gpio_put(LED_PIN_21, 0); // Apagar LED 2
                 gpio_put(LED_PIN_22, 1); // encender LED 3
+                printf("Temperatura 5\n");
                 contadorT = 6;
             }
             else if (contadorT == 6) 
