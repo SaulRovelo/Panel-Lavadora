@@ -1,6 +1,6 @@
 import utime
 
-class Logica:
+class Logica_motor:
     def __init__(self, perifericos):
         self.perifericos = perifericos
         self.velocidades = [0, 21845, 43690, 65535]
@@ -8,7 +8,7 @@ class Logica:
         self.motor_encendido = False
         self.nivel_seleccionado = False
         self.confirmacion_recibida = False
-        print("Lógica inicializada.")
+        print("Logica inicializada.")
 
     def seleccionar_velocidad_con_boton(self):
         while True:
@@ -19,12 +19,19 @@ class Logica:
                     print(f'Nivel de velocidad seleccionado: {int((self.velocidades[self.nivel] / 65535) * 100)}%')
                     self.actualizar_leds()
                     self.nivel_seleccionado = True
+                    print("Presione el boton de confirmacion para confirmar la velocidad seleccionada.")
                 else:
                     print('No se puede seleccionar velocidad 0')
                 # Esperar a que se libere el botón antes de continuar
                 while self.perifericos.boton_velocidad.value() == 1:
                     pass
                 utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
+            
+            
+            # Permitir salida del bucle si se presiona el botón de confirmación
+            estado_confirmar = self.perifericos.boton_confirmar.value()
+            if estado_confirmar == 1:
+                self.confirmar_velocidad()
                 break
 
     def confirmar_velocidad(self):
