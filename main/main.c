@@ -41,9 +41,7 @@ int main() {
             // Imprimir el estado actual de la lavadora
             printf("Lavadora %s\n", lavadora_encendida ? "encendida" : "apagada");
             //sleep_ms(sleep_duration_ms);
-
         }
-
         
         // Si la lavadora está encendida, Controla las funcionalidades
         if (lavadora_encendida) {
@@ -58,11 +56,10 @@ int main() {
                     uart_puts(uart0, "0");
                 }
             }
-
             if (inicio) {
                 uart_puts(uart0, "0");
                 // Código cuando la lavadora está en estado de inicio
-                printf("Lavadora en funcionamiento...\n");
+                printf("Lavadora en pausa...\n");
                 leer_potenciometro(); // Lee el valor del potenciometro y asigna un valor entre 0 a 5 a una variable.
                 encender_leds_potenciometro(); // Enciende los leds según el valor del potenciometro.
                 control_leds_agua(); // Enciende los led's de nivel de agua al presionar el botón

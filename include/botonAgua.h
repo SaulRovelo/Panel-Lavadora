@@ -72,7 +72,9 @@ void control_leds_agua() {
             printf("Ningún nivel seleccionado\n");
             contador = 0;
         }
+        char buffer[30];
+        sprintf(buffer, "0_control_leds_agua________%d", contador);
+        uart_puts(uart0, buffer);
         //sleep_ms(200); 
     }
 }
-

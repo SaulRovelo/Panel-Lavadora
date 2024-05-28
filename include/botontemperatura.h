@@ -76,5 +76,8 @@ void control_leds_temperatura()
                 gpio_put(LED_PIN_22, 0); // Apagar LED 3
                 contadorT = 1;
             }
+            char buffer[30];
+            sprintf(buffer, "0_control_leds_temperatura_%d", contadorT);
+            uart_puts(uart0, buffer);
+    }
 }
- }
