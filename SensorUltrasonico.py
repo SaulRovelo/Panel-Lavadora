@@ -1,7 +1,10 @@
 import utime
 
 class SensorUltrasonico:
-
+    Nivel=8.8 
+    Nivel_ditancia= nivel_deseado[int(nivel)]
+    
+    @staticmethod
     def medir(trigger, echo):
         trigger.low()
         utime.sleep_us(2)
