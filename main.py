@@ -4,6 +4,7 @@ import utime
 
 def Sensor(): 
     iniciar = Inicializacion ()
+    
     while True:
         distancia = SensorUltrasonico.medir(iniciar.trigger, iniciar.echo)
         print(f"Distancia: {distancia:.2f} cm")
