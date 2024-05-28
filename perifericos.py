@@ -13,7 +13,7 @@ class Perifericos:
 
         # Pines para los botones
         self.boton_velocidad = Pin(16, Pin.IN, Pin.PULL_DOWN)
-        self.boton_iniciar = Pin(17, Pin.IN, Pin.PULL_DOWN)
+        self.boton_confirmar = Pin(17, Pin.IN, Pin.PULL_DOWN)  # Nuevo botón de confirmación
 
         # Inicializar el pin PWM y el motor apagado
         self.motor1.value(0)
