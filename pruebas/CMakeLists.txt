@@ -1,5 +1,5 @@
 add_executable(pruebas
-    prueba.c
+    pruebasZumbador.c
 )
 
 target_link_libraries(pruebas

@@ -47,6 +47,7 @@ int main() {
         if (lavadora_encendida) {
             if (uart_is_readable(uart0)) {
                 uart_read_blocking(uart0, (uint8_t*)buffer, 1);
+                printf("Recibido: %c\n", buffer[0]);
                 if (buffer[0] == '1') { 
                     // Cambiar el estado de inicio
                     inicio = !inicio;
@@ -70,6 +71,7 @@ int main() {
             } else {
                 printf("Inicio\n");
                 uart_puts(uart0, "1");
+                encender_leds_potenciometro();
                 sleep_ms(sleep_duration_ms); // Sleep de 125 ms
                 //char buffer[20];
                 //sprintf(buffer, "%d", contador);
