@@ -1,34 +1,8 @@
-from machine import Pin, PWM
 import utime
 
-class Perifericos:
-    def __init__(self):
-        # Pines para el control del motor
-        self.motor1 = Pin(19, Pin.OUT)
-        self.pwm = PWM(Pin(18))
-
-        # Pines para los LEDs
-        self.led1 = Pin(13, Pin.OUT)
-        self.led2 = Pin(12, Pin.OUT)
-        self.led3 = Pin(11, Pin.OUT)
-
-        # Pines para los botones
-        self.boton_velocidad = Pin(16, Pin.IN, Pin.PULL_DOWN)
-        self.boton_iniciar = Pin(17, Pin.IN, Pin.PULL_DOWN)
-
-        # Inicializar el pin PWM y el motor apagado
-        self.motor1.value(0)
-        self.pwm.freq(500)
-        self.pwm.duty_u16(0)
-
-        # Apagar los LEDs
-        self.led1.value(0)
-        self.led2.value(0)
-        self.led3.value(0)
-
 class Logica:
-    def __init__(self):
-        self.perifericos = Perifericos()
+    def __init__(self, perifericos):
+        self.perifericos = perifericos
         self.velocidades = [0, 21845, 43690, 65535]
         self.nivel = 0
         self.motor_encendido = False
@@ -81,28 +55,3 @@ class Logica:
             self.perifericos.led2.value(0)
             self.perifericos.led3.value(0)
             print('Motor apagado')
-
-class Main:
-    def __init__(self):
-        self.perifericos = Perifericos()
-        self.logica = Logica()
-
-    def ejecutar(self):
-        print('Seleccione la velocidad (33, 66, 100)')
-        while True:
-            self.logica.seleccionar_velocidad()
-            estado_iniciar = self.perifericos.boton_iniciar.value()
-            # Verificar si se presionó el botón de iniciar
-            if estado_iniciar == 1:
-                if self.logica.motor_encendido:
-                    # Apagar el motor
-                    self.logica.detener_motor()
-                elif self.logica.nivel_seleccionado:
-                    # Encender el motor con la velocidad seleccionada
-                    self.logica.iniciar_motor()
-                # Esperar un tiempo para evitar múltiples pulsaciones rápidas del botón de iniciar
-                utime.sleep_ms(300)
-
-if __name__ == "__main__":
-    app = Main()
-    app.ejecutar()
