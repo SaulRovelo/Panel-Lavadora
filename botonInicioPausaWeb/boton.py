@@ -2,10 +2,11 @@ from machine import Pin, UART, PWM
 from utime import sleep_ms
 import socket
 from sounds import play_tone
+from Sensor import Sensor
 #Inicializamos el puerto UART
 
 uart  = UART(0, 9600, tx=Pin(0), rx=Pin(1))
-buzz = PWM(Pin(19)) 
+buzz = PWM(Pin(15))
 on_state = False
 
 def web_page():
@@ -76,6 +77,7 @@ def init_server():
                     uart.write('1')
                     # sleep_ms(100) 
                     play_tone(1000, 500, buzz)
+                    Sensor()
                     print("Inicio")
                     
                 elif '/?pause' in request and not on_state:
