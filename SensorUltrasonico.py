@@ -18,6 +18,12 @@ class SensorUltrasonico:
         distancia = (tiempo * 0.0343) / 2
         return distancia
 
+    def sonidito(frecuencia, duracion, buzer):
+        buzer.freq(frecuencia)
+        buzer.duty_u16(32768)
+        utime.sleep(duracion)
+        buzer.duty_u16(0)
+        
     def encender_leds(distancia, leds):
         for led in leds:
             led.low()
