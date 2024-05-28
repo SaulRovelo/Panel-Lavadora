@@ -78,3 +78,27 @@ class Logica_motor:
             self.perifericos.led2.value(0)
             self.perifericos.led3.value(0)
             print('Motor apagado')
+
+    # def prender_motor(self):
+    #     print("Motor Encendido")
+    #     self.perifericos.motor1.value(0)
+    #     self.perifericos.motor2.value(0)
+    #     utime.sleep(1)
+        
+    #     self.perifericos.motor1.value(0)
+    #     self.perifericos.motor2.value(1)
+    #     utime.sleep(1)
+        
+    #     self.perifericos.motor1.value(1)
+    #     self.perifericos.motor2.value(0)
+    #     utime.sleep(1)
+        
+    #     self.perifericos.motor1.value(1)
+    #     self.perifericos.motor2.value(1)
+    #     utime.sleep(1)
+        
+    # def detener_motor2(self):
+    #     print("Motor Apagado")
+    #     self.perifericos.motor1.value(0)
+    #     self.perifericos.motor2.value(0)
+        

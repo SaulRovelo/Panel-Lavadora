@@ -1,5 +1,5 @@
-from logica import Logica_motor
-from perifericos import Incializacion_motor
+from inizializacion_motor import Incializacion_motor
+from logica_motor import Logica_motor
 import utime
 
 class Main:
@@ -31,3 +31,4 @@ class Main:
 if __name__ == "__main__":
     app = Main()
     app.ejecutar()
+
