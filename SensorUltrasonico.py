@@ -49,5 +49,4 @@ class SensorUltrasonico:
             leds[3].value(1)
             print("Nivel de agua: 4")
     
-if __name__ == "__main__":
-    sonidito(2000, 1, iniciar.buzzer)
+
