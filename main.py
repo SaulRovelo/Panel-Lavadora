@@ -7,7 +7,7 @@ def Sensor():
     while True:
         distancia = SensorUltrasonico.medir(iniciar.trigger, iniciar.echo)
         print(f"Distancia: {distancia:.2f} cm")
+        if distancia < SensorUltrasonico.nivel:
+                print("se llego ")
 
 
-if __name__ == "__main__":
-    Sensor()

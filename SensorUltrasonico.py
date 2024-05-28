@@ -1,8 +1,10 @@
 import utime
 
 class SensorUltrasonico:
-    
+    nivel_deseado = 4
+    nivel_deseado_cm = [11, 8.8, 6.8, 4, 3] 
 
+    @staticmethod
     def medir(trigger, echo):
         trigger.low()
         utime.sleep_us(2)
@@ -18,13 +20,14 @@ class SensorUltrasonico:
         tiempo = utime.ticks_diff(end, start)
         distancia = (tiempo * 0.0343) / 2
         return distancia
-
+    @staticmethod
     def sonidito(frecuencia, duracion, buzer):
         buzer.freq(frecuencia)
         buzer.duty_u16(32768)
         utime.sleep(duracion)
         buzer.duty_u16(0)
 
+    @staticmethod
     def encender_leds(distancia, leds):
         for led in leds:
             led.low()
