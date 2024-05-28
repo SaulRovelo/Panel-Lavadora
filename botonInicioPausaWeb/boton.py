@@ -1,12 +1,11 @@
-from machine import Pin, UART
+from machine import Pin, UART, PWM
 from utime import sleep_ms
 import socket
-#from Sensor import Sensor
-
+from sounds import play_tone
 #Inicializamos el puerto UART
 
 uart  = UART(0, 9600, tx=Pin(0), rx=Pin(1))
-
+buzz = PWM(Pin(19)) 
 on_state = False
 
 def web_page():
@@ -60,6 +59,7 @@ def web_page():
 
 def init_server():
     global on_state
+    
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind(('', 80))
     s.listen(5)
@@ -69,19 +69,21 @@ def init_server():
             print("Conexion desde %s" % str(addr))
             request = conn.recv(1024).decode('utf-8')
             try:
+                response = web_page()
+                conn.sendall(response.encode('utf-8'))
                 if '/?start' in request and on_state:
                     on_state = False
                     uart.write('1')
-                    sleep_ms(100)
-                    #Sensor()   
+                    # sleep_ms(100) 
+                    play_tone(1000, 500, buzz)
                     print("Inicio")
+                    
                 elif '/?pause' in request and not on_state:
                     on_state = True
                     uart.write('0')
-                    sleep_ms(100)
+                    # sleep_ms(100)
+                    play_tone(1500, 500, buzz)
                     print("Pausa")
-                response = web_page()
-                conn.sendall(response.encode('utf-8'))
             except Exception as e:
                 print("Error: ", e)
             finally:

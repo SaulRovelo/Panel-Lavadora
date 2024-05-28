@@ -8,8 +8,8 @@ import network
 
 led = Pin("LED", Pin.OUT)
 
-ssid = "labred"
-password = "labred2017"
+ssid = "HuaweiDulche"
+password = "Dulche:)"
 
 #Interfaz
 station = network.WLAN(network.STA_IF)
@@ -22,7 +22,7 @@ attempt = 0
 
 while not station.isconnected() and attempt < max_attempts:
     attempt += 1
-    sleep_ms(500)
+    sleep_ms(1500)
     print("Intento de coneccion: ", attempt)
 if station.isconnected():
     print("Coneccion exitosa")
