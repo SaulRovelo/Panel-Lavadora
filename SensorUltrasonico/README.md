@@ -38,7 +38,8 @@ Sigue estos pasos para montar tu prototipo:
 1. Conecta el GND del zumbador al GND de la Raspberry Pi Pico W.
 
 <img src="Proto.png" alt="Diagrama de flujo del sensor" width="600">
-<img src="Diagrama.png" alt="Diagrama de flujo del sensor" width="600">
+<img src="Diagrama.png" alt="Diagrama de flujo del sensor" width="300">
+
 ## Instalación y Uso
 1. Clona este repositorio en tu dispositivo.
 1. Conecta los componentes a la Raspberry Pi Pico W y a la protoboard según el esquema de conexión proporcionado.
