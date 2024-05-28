@@ -6,12 +6,15 @@ Esta funcionalidad lo que nos permite es que al presionar distintos botones haga
 
 ## Esquema fisico
 
-<img src="./image.png" style="max-height:300px;">
+<img src="./DF.png">
 
 ## Funcionamiento
 
 Al cargar el programa en c (**pruebasZumbador.c**), y el programa en python (**./ReceptorPython/main.py**), y al alambrar segun el esquema fisico, cuando se pulsa el boton izquierdo emite un sonido el zumador, y al pulsar el otro boton emite un sonido distinto.
 
+## Diagrama de flujo
+
+<img src="./image.png">
 
 
 ## Instalación y Uso
