@@ -1,3 +1,5 @@
+from machine import Pin, PWM
+
 class Inicializacion:
     
     def __init__(self):
@@ -5,3 +7,4 @@ class Inicializacion:
         self.trigger = Pin(9, Pin.OUT) 
         self.led_pins = [Pin(i, Pin.OUT) for i in range(10, 14)]
         self.buzzer_pin = Pin(15, Pin.OUT) 
+        self.buzzer = PWM(self.buzzer_pin)
