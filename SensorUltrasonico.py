@@ -17,3 +17,28 @@ class SensorUltrasonico:
         tiempo = utime.ticks_diff(end, start)
         distancia = (tiempo * 0.0343) / 2
         return distancia
+
+    def encender_leds(distancia, leds):
+        for led in leds:
+            led.low()
+        
+        if distancia > 11:
+            print("Nivel de agua: 0")
+        elif distancia > 8.8:
+            leds[0].value(1)
+            print("Nivel de agua: 1")
+        elif distancia > 6.8:
+            leds[0].value(1)
+            leds[1].value(1)
+            print("Nivel de agua: 2")
+        elif distancia > 4:
+            leds[0].value(1)
+            leds[1].value(1)
+            leds[2].value(1)
+            print("Nivel de agua: 3")
+        elif distancia > 0:
+            leds[0].value(1)
+            leds[1].value(1)
+            leds[2].value(1)
+            leds[3].value(1)
+            print("Nivel de agua: 4")
