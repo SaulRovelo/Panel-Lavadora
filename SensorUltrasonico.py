@@ -4,7 +4,7 @@ class SensorUltrasonico:
     nivel_deseado = 4
     nivel_deseado_cm = [11, 8.8, 6.8, 4, 3] 
     nivel_deseado_distancia = nivel_deseado_cm[int(nivel_deseado)]
-    
+
     @staticmethod
     def medir(trigger, echo):
         trigger.low()
@@ -21,6 +21,7 @@ class SensorUltrasonico:
         tiempo = utime.ticks_diff(end, start)
         distancia = (tiempo * 0.0343) / 2
         return distancia
+        
     @staticmethod
     def sonidito(frecuencia, duracion, buzer):
         buzer.freq(frecuencia)

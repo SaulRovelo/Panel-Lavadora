@@ -10,6 +10,8 @@ def Sensor():
         if distancia < SensorUltrasonico.nivel_deseado_distancia::
                 print("se llego ")
 
+                SensorUltrasonico.sonidito(2000, 1, iniciar.buzzer)
+
 
 if __name__ == "__main__":
     Sensor()
