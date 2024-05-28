@@ -23,7 +23,7 @@ class SensorUltrasonico:
         buzer.duty_u16(32768)
         utime.sleep(duracion)
         buzer.duty_u16(0)
-        
+
     def encender_leds(distancia, leds):
         for led in leds:
             led.low()
@@ -48,3 +48,6 @@ class SensorUltrasonico:
             leds[2].value(1)
             leds[3].value(1)
             print("Nivel de agua: 4")
+    
+if __name__ == "__main__":
+    sonidito(2000, 1, iniciar.buzzer)
