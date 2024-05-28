@@ -10,11 +10,11 @@ def Sensor():
         if distancia < SensorUltrasonico.nivel_deseado_distancia::
 
                 print("se llego ")
-                SensorUltrasonico.encender_leds(distancia, iniciar.led_pins)
+                
            
                 SensorUltrasonico.sonidito(2000, 1, iniciar.buzzer)
 
-                
+                SensorUltrasonico.encender_leds(distancia, iniciar.led_pins)
                 utime.sleep(1)
 
 
