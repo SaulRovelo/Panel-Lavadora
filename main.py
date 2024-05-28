@@ -8,9 +8,14 @@ def Sensor():
         distancia = SensorUltrasonico.medir(iniciar.trigger, iniciar.echo)
         print(f"Distancia: {distancia:.2f} cm")
         if distancia < SensorUltrasonico.nivel_deseado_distancia::
-                print("se llego ")
 
+                print("se llego ")
+                SensorUltrasonico.encender_leds(distancia, iniciar.led_pins)
+           
                 SensorUltrasonico.sonidito(2000, 1, iniciar.buzzer)
+
+                
+                utime.sleep(1)
 
 
 if __name__ == "__main__":
