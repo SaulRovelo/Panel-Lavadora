@@ -11,11 +11,10 @@ def Sensor():
 
                 print("se llego ")
                 
-           
                 SensorUltrasonico.sonidito(2000, 1, iniciar.buzzer)
 
-                SensorUltrasonico.encender_leds(distancia, iniciar.led_pins)
-                utime.sleep(1)
+        SensorUltrasonico.encender_leds(distancia, iniciar.led_pins)
+        utime.sleep(1)
 
 
 if __name__ == "__main__":
