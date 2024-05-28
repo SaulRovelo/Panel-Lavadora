@@ -6,6 +6,8 @@ Este código, implementado en MicroPython para una Raspberry Pi Pico W, se encar
 - Clase Inicialización: Inicializa todos los pines necesarios, como los pines del sensor ultrasónico, los pines de los LEDs y el pin del zumbador pasivo. Utiliza la clase Pin de la biblioteca machine para configurar los pines como entradas o salidas según sea necesario, y también utiliza la clase PWM para configurar el pin del zumbador pasivo para generar señales PWM.
 - Clase SensorUltrasonico: Maneja la lógica de medición y actualización de los LEDs y el sonido del zumbador. Proporciona métodos estáticos para medir la distancia utilizando el sensor ultrasónico, emitir un sonido con el zumbador y encender los LEDs según el nivel de agua medido. Además, define valores predefinidos para el nivel deseado de agua y las distancias correspondientes.
 - Clase Main: Coordina la ejecución del programa, inicializando las clases necesarias y entrando en un bucle para medir la distancia y mostrar los mensajes en pantalla. Se utiliza el sensor ultrasónico para medir la distancia, y se comprueba si la distancia medida es menor que el nivel deseado de agua. En tal caso, se emite un sonido y se encienden los LEDs.
+## Digrama de flujo
+<img src="Diagrama.png" alt="Diagrama de flujo del sensor" width="300">
 
 ## Materiales que se necesitan para implementar el prototipo:
 - Sensor ultrasónico
@@ -38,7 +40,7 @@ Sigue estos pasos para montar tu prototipo:
 1. Conecta el GND del zumbador al GND de la Raspberry Pi Pico W.
 
 <img src="Proto.png" alt="Diagrama de flujo del sensor" width="600">
-<img src="Diagrama.png" alt="Diagrama de flujo del sensor" width="300">
+
 
 ## Instalación y Uso
 1. Clona este repositorio en tu dispositivo.
