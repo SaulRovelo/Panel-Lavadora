@@ -1,6 +1,7 @@
 from machine import Pin, UART
 from utime import sleep_ms
 import socket
+#from Sensor import Sensor
 
 #Inicializamos el puerto UART
 
@@ -14,6 +15,38 @@ def web_page():
     <title>Boton de inicio y pausa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">
+    <style>
+        html {
+            font-family: Fira Code;
+            display: inline-block;
+            margin: 0px auto;
+            text-align: center;
+        }
+        h2 {
+            color: #0a0a0a;
+        }
+        p {
+            font-size: 1.5rem;
+        }
+        .button {
+            display: inline-block;
+            background-color: #e7bd3b;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            padding: 16px 40px;
+            text-decoration: none;
+            font-size: 30px;
+            margin: 2px;
+            cursor: pointer;
+        }
+        .button1 {
+            background-color: #e7bd3b;
+        }
+        .button2 {
+            background-color: #4286f4;
+        }
+    </style>
     </head>
     <body>
     <h1>Boton de inicio y pausa</h1>
@@ -37,17 +70,18 @@ def init_server():
             request = conn.recv(1024).decode('utf-8')
             try:
                 if '/?start' in request and on_state:
-                    on_state = True
+                    on_state = False
                     uart.write('1')
                     sleep_ms(100)
+                    #Sensor()   
                     print("Inicio")
                 elif '/?pause' in request and not on_state:
-                    on_state = False
+                    on_state = True
                     uart.write('0')
                     sleep_ms(100)
                     print("Pausa")
                 response = web_page()
-                conn.sendall(response).encode('utf-8')
+                conn.sendall(response.encode('utf-8'))
             except Exception as e:
                 print("Error: ", e)
             finally:
@@ -55,7 +89,7 @@ def init_server():
     except KeyboardInterrupt:
         print("Servidor detenido")
     finally:
-        s.close()
+        s.close() 
 
 if __name__ == '__main__':
     init_server()
