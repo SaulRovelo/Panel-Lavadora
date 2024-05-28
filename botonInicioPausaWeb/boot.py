@@ -1,5 +1,7 @@
-import usocket as socket
-
+try:
+    import usocket as socket
+except ImportError:
+    import socket
 from utime import sleep_ms
 from machine import Pin
 import network
