@@ -1,5 +1,6 @@
 from Inicializacion_sensor import Inicializacion_sensor  
-from SensorUltrasonico import SensorUltrasonico  
+from SensorUltrasonico import SensorUltrasonico 
+from SensorUltrasonico import SensorUltrasonico
 import utime  
 
 def Sensor():

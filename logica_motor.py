@@ -1,8 +1,14 @@
 import utime
 from inizializacion_motor import Incializacion_motor
-from machine import Pin, PWM, UART
+from machine import Pin, PWM, UART, I2C 
 from sounds import play_tone
-uart  = UART(0, 9600, tx=Pin(0), rx=Pin(1))
+from ssd1306 import SSD1306_I2C
+from dht import DHT22
+
+i2c = I2C(0, scl=Pin(5), sda=Pin(4))
+oled = SSD1306_I2C(128, 64, i2c)
+uart = UART(0, 9600, tx=Pin(0), rx=Pin(1))
+dht = DHT22(Pin(2))
 buzz = PWM(Pin(15))
 
 class Logica_motor:
@@ -13,39 +19,49 @@ class Logica_motor:
     nivel_seleccionado = False
     confirmacion_recibida = False
 
-    print("Logica inicializada.")
-
     @classmethod
     def seleccionar_velocidad_con_boton(cls):
-        while True:
+        counter = 10  # Inicializa el contador con el valor deseado
+        while counter > 0:
             if uart.any():
-                    data = uart.read().decode().strip()
-                    print(data)
-                    if data == "s1":
-                        play_tone(1500, 500, buzz)
-                    elif data == "s2":
-                        play_tone(1000, 500, buzz)
-                    elif data == "s3":
-                        play_tone(500, 500, buzz)
-            estado_velocidad = cls.perifericos.boton_velocidad.value()
-            if estado_velocidad == 1 and not cls.motor_encendido:
-                cls.nivel = (cls.nivel + 1) % len(cls.velocidades)
-                if cls.nivel != 0:
-                    print(f'Nivel de velocidad seleccionado: {int((cls.velocidades[cls.nivel] / 65535) * 100)}%')
-                    cls.actualizar_leds()
-                    cls.nivel_seleccionado = True
-                    print("Presione el boton de confirmacion para confirmar la velocidad seleccionada.")
-                else:
-                    print('No se puede seleccionar velocidad 0')
-                while cls.perifericos.boton_velocidad.value() == 1:
-                    pass
-                utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
+                data = uart.read().decode().strip()
+                print(data)
+                if data == "s1":
+                    play_tone(1500, 500, buzz)
+                elif data == "s2":
+                    play_tone(1000, 500, buzz)
+                elif data == "s3":
+                    play_tone(500, 500, buzz)
 
-            estado_confirmar = cls.perifericos.boton_confirmar.value()
-            if estado_confirmar == 1:
-                cls.confirmar_velocidad()
-                
-                break
+            oled.fill(0)
+            oled.text('Counter:', 32, 32)  # Corrige la posición del texto
+            oled.text(str(counter), 32, 48)  # Muestra el valor del contador
+            oled.show()
+            utime.sleep_ms(1000)  # Espera 1 segundo
+            counter -= 1
+
+        oled.fill(0)
+        oled.text('Counter stopped', 32, 64)
+        oled.show()
+        oled.fill(0)
+
+        estado_velocidad = cls.perifericos.boton_velocidad.value()
+        if estado_velocidad == 1 and not cls.motor_encendido:
+            cls.nivel = (cls.nivel + 1) % len(cls.velocidades)
+            if cls.nivel != 0:
+                print(f'Nivel de velocidad seleccionado: {int((cls.velocidades[cls.nivel] / 65535) * 100)}%')
+                cls.actualizar_leds()
+                cls.nivel_seleccionado = True
+                print("Presione el boton de confirmacion para confirmar la velocidad seleccionada.")
+            else:
+                print('No se puede seleccionar velocidad 0')
+            while cls.perifericos.boton_velocidad.value() == 1:
+                pass
+            utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
+
+        estado_confirmar = cls.perifericos.boton_confirmar.value()
+        if estado_confirmar == 1:
+            cls.confirmar_velocidad()
 
     @classmethod
     def confirmar_velocidad(cls):
@@ -92,3 +108,9 @@ class Logica_motor:
             cls.perifericos.led2.value(0)
             cls.perifericos.led3.value(0)
             print('Motor apagado')
+
+# Ejemplo de uso
+Logica_motor.seleccionar_velocidad_con_boton()
+Logica_motor.iniciar_motor()
+# Para detener el motor
+# Logica_motor.detener_motor()

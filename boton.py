@@ -89,19 +89,7 @@ def init_server():
                     on_state = True
                     uart.write('0')
                     # sleep_ms(100)
-                    play_tone(1500, 500, buzz)
-                    # while True:
-                    #     if uart.any():
-                    #         data = uart.read().decode().strip()
-                    #         print(data)
-                    #         if data == "s1":
-                    #             play_tone(1500, 500, buzz)
-                    #         elif data == "s2":
-                    #             play_tone(1000, 500, buzz)
-                    #         elif data == "s3":
-                    #             play_tone(500, 500, buzz)  
-                    #         break
-                            
+                    play_tone(1500, 500, buzz)        
                     motor.seleccionar_velocidad_con_boton()
                     print("Pausa")
             except Exception as e:

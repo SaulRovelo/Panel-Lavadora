@@ -10,8 +10,7 @@ class SensorUltrasonico:
     # Calcula la distancia correspondiente al nivel maximo 
     nivel_deseado_distancia = nivel_deseado_cm[int(nivel_deseado)]
 
-
-    @staticmethod #Metodos estaticos 
+    @staticmethod
     def medir(trigger, echo):
         """
         Realiza una medición de distancia utilizando el sensor ultrasónico.
