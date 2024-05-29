@@ -3,15 +3,13 @@ from inizializacion_motor import Incializacion_motor
 from machine import Pin, PWM, UART, I2C 
 from sounds import play_tone
 from ssd1306 import SSD1306_I2C
-from dht import DHT22
 
-i2c = I2C(0, scl=Pin(5), sda=Pin(4))
+i2c = I2C(1, scl=Pin(3), sda=Pin(2))
 oled = SSD1306_I2C(128, 64, i2c)
 uart = UART(0, 9600, tx=Pin(0), rx=Pin(1))
-dht = DHT22(Pin(2))
 buzz = PWM(Pin(15))
 
-class Logica_motor:
+class Logica:
     perifericos = Incializacion_motor()
     velocidades = [0, 21845, 43690, 65535]
     nivel = 0
@@ -20,8 +18,8 @@ class Logica_motor:
     confirmacion_recibida = False
 
     @classmethod
-    def seleccionar_velocidad_con_boton(cls):
-        counter = 10  # Inicializa el contador con el valor deseado
+    def proceso_de_seleccion(cls):
+        counter = 10 
         while counter > 0:
             if uart.any():
                 data = uart.read().decode().strip()
@@ -34,10 +32,10 @@ class Logica_motor:
                     play_tone(500, 500, buzz)
 
             oled.fill(0)
-            oled.text('Counter:', 32, 32)  # Corrige la posición del texto
-            oled.text(str(counter), 32, 48)  # Muestra el valor del contador
+            oled.text('Counter:', 32, 32)  
+            oled.text(str(counter), 32, 48)  
             oled.show()
-            utime.sleep_ms(1000)  # Espera 1 segundo
+            utime.sleep_ms(1000)  
             counter -= 1
 
         oled.fill(0)
@@ -110,7 +108,7 @@ class Logica_motor:
             print('Motor apagado')
 
 # Ejemplo de uso
-Logica_motor.seleccionar_velocidad_con_boton()
-Logica_motor.iniciar_motor()
+Logica.seleccionar_velocidad_con_boton()
+Logica.iniciar_motor()
 # Para detener el motor
 # Logica_motor.detener_motor()

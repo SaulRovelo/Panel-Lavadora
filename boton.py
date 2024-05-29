@@ -3,13 +3,15 @@ from utime import sleep_ms
 import socket
 from sounds import play_tone
 from Sensor import Sensor
-from logica_motor import Logica_motor 
+from logica import Logica 
+from dht import DHT22
 
 #Inicializamos el puerto UART
 uart  = UART(0, 9600, tx=Pin(0), rx=Pin(1))
 buzz = PWM(Pin(15))
 on_state = False
-motor = Logica_motor()
+logica = Logica()
+dht = DHT22(Pin(5))
 
 
 def web_page():
@@ -81,16 +83,16 @@ def init_server():
                     # sleep_ms(100) 
                     play_tone(1000, 500, buzz)
                     Sensor()
-                    motor.iniciar_motor()
+                    logica.iniciar_motor()
                     sleep_ms(1500)
-                    motor.detener_motor()
+                    logica.detener_motor()
                     print("Inicio")
                 elif '/?pause' in request and not on_state:
                     on_state = True
                     uart.write('0')
                     # sleep_ms(100)
                     play_tone(1500, 500, buzz)        
-                    motor.seleccionar_velocidad_con_boton()
+                    logica.proceso_de_seleccion()
                     print("Pausa")
             except Exception as e:
                 print("Error: ", e)
