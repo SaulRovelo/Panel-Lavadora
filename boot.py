@@ -7,9 +7,8 @@ from machine import Pin
 import network
 
 led = Pin("LED", Pin.OUT)
-
-ssid = "INFINITUM1C12_2.4"
-password = "s2pM3asehJ"
+ssid = "HuaweiDulche"
+password = "Dulche:)"
 
 #Interfaz
 station = network.WLAN(network.STA_IF)

@@ -1,17 +1,20 @@
-from machine import Pin, UART, PWM
+from machine import Pin, UART, PWM, I2C
 from utime import sleep_ms
 import socket
 from sounds import play_tone
 from Sensor import Sensor
-from logica import Logica 
-from dht import DHT22
+from logica_motor import Logica_motor 
+from ssd1306 import SSD1306_I2C
+
 
 #Inicializamos el puerto UART
 uart  = UART(0, 9600, tx=Pin(0), rx=Pin(1))
 buzz = PWM(Pin(15))
 on_state = False
-logica = Logica()
-dht = DHT22(Pin(5))
+motor = Logica_motor()
+i2c = I2C(0, scl=Pin(5), sda=Pin(4))
+oled = SSD1306_I2C(128, 32, i2c)
+contador = 3
 
 
 def web_page():
@@ -64,7 +67,8 @@ def web_page():
     return html
 
 def init_server():
-    global on_state
+    global on_state, contador
+    
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind(('', 80))
     s.listen(5)
@@ -82,16 +86,25 @@ def init_server():
                     uart.write('1')
                     play_tone(1000, 500, buzz)
                     Sensor()
-                    logica.iniciar_motor()
-                    sleep_ms(1500)
-                    logica.detener_motor()
+                    while contador > 0:
+                        motor.iniciar_motor()
+                        contador -= 1
+                        oled.fill(0)
+                        oled.text("Inicio en: ", 0, 0)
+                        oled.text(str(contador), 0, 10)
+                        oled.show()
+                        #sleep_ms(1000)
+                    motor.detener_motor()
                     print("Inicio")
                 elif '/?pause' in request and not on_state:
-                    print("Pausa")
+                    oled.fill(0)
+                    oled.text("Pausa ", 0, 0)
+                    oled.show()
                     on_state = True
                     uart.write('0')
-                    play_tone(1500, 500, buzz)        
-                    logica.proceso_de_seleccion()
+                    play_tone(1500, 500, buzz) 
+                    motor.seleccionar_velocidad_con_boton()
+                    print("Pausa")
             except Exception as e:
                 print("Error: ", e)
             finally:

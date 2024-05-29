@@ -16,50 +16,39 @@ class Logica:
     motor_encendido = False
     nivel_seleccionado = False
     confirmacion_recibida = False
+    print("Logica inicializada.")
 
     @classmethod
-    def proceso_de_seleccion(cls):
-        counter = 10 
-        while counter > 0:
+    def seleccionar_velocidad_con_boton(cls):
+        while True:
             if uart.any():
                 data = uart.read().decode().strip()
                 print(data)
                 if data == "s1":
+                    
                     play_tone(1500, 500, buzz)
                 elif data == "s2":
                     play_tone(1000, 500, buzz)
                 elif data == "s3":
                     play_tone(500, 500, buzz)
+            estado_velocidad = cls.perifericos.boton_velocidad.value()
+            if estado_velocidad == 1 and not cls.motor_encendido:
+                cls.nivel = (cls.nivel + 1) % len(cls.velocidades)
+                if cls.nivel != 0:
+                    print(f'Nivel de velocidad seleccionado: {int((cls.velocidades[cls.nivel] / 65535) * 100)}%')
+                    cls.actualizar_leds()
+                    cls.nivel_seleccionado = True
+                    print("Presione el boton de confirmacion para confirmar la velocidad seleccionada.")
+                else:
+                    print('No se puede seleccionar velocidad 0')
+                while cls.perifericos.boton_velocidad.value() == 1:
+                    pass
+                utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
 
-            oled.fill(0)
-            oled.text('Counter:', 32, 32)  
-            oled.text(str(counter), 32, 48)  
-            oled.show()
-            utime.sleep_ms(1000)  
-            counter -= 1
-
-        oled.fill(0)
-        oled.text('Counter stopped', 32, 64)
-        oled.show()
-        oled.fill(0)
-
-        estado_velocidad = cls.perifericos.boton_velocidad.value()
-        if estado_velocidad == 1 and not cls.motor_encendido:
-            cls.nivel = (cls.nivel + 1) % len(cls.velocidades)
-            if cls.nivel != 0:
-                print(f'Nivel de velocidad seleccionado: {int((cls.velocidades[cls.nivel] / 65535) * 100)}%')
-                cls.actualizar_leds()
-                cls.nivel_seleccionado = True
-                print("Presione el boton de confirmacion para confirmar la velocidad seleccionada.")
-            else:
-                print('No se puede seleccionar velocidad 0')
-            while cls.perifericos.boton_velocidad.value() == 1:
-                pass
-            utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
-
-        estado_confirmar = cls.perifericos.boton_confirmar.value()
-        if estado_confirmar == 1:
-            cls.confirmar_velocidad()
+            estado_confirmar = cls.perifericos.boton_confirmar.value()
+            if estado_confirmar == 1:
+                cls.confirmar_velocidad()
+                break
 
     @classmethod
     def confirmar_velocidad(cls):
@@ -106,9 +95,3 @@ class Logica:
             cls.perifericos.led2.value(0)
             cls.perifericos.led3.value(0)
             print('Motor apagado')
-
-# Ejemplo de uso
-Logica.proceso_de_seleccion()
-Logica.iniciar_motor()
-# Para detener el motor
-# Logica_motor.detener_motor()
