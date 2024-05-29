@@ -1,28 +1,20 @@
 import utime
+from inicializacion_motor import Inicializacion_motor
 
 class Logica_motor:
     """
     Clase que gestiona la lógica para seleccionar la velocidad y controlar el motor.
     """
+    perifericos = Inicializacion_motor()
+    velocidades = [0, 21845, 43690, 65535]
+    nivel = 0
+    motor_encendido = False
+    nivel_seleccionado = False
+    confirmacion_recibida = False
+    print("Logica inicializada.")
 
-    def __init__(self, perifericos):
-        """
-        Inicializa la lógica del motor con los periféricos dados.
-
-        Parámetros:
-        -----------
-        perifericos : object
-            Objeto que contiene los periféricos del motor, como pines y LEDs.
-        """
-        self.perifericos = perifericos
-        self.velocidades = [0, 21845, 43690, 65535]
-        self.nivel = 0
-        self.motor_encendido = False
-        self.nivel_seleccionado = False
-        self.confirmacion_recibida = False
-        print("Logica inicializada.")
-
-    def seleccionar_velocidad_con_boton(self):
+    @classmethod
+    def seleccionar_velocidad_con_boton(cls):
         """
         Permite seleccionar la velocidad del motor usando un botón.
 
@@ -30,115 +22,121 @@ class Logica_motor:
         Si se presiona el botón de confirmación, la velocidad seleccionada se confirma.
         """
         while True:
-            estado_velocidad = self.perifericos.boton_velocidad.value()
-            if estado_velocidad == 1 and not self.motor_encendido:
-                self.nivel = (self.nivel + 1) % len(self.velocidades)
-                if self.nivel != 0:
-                    print(f'Nivel de velocidad seleccionado: {int((self.velocidades[self.nivel] / 65535) * 100)}%')
-                    self.actualizar_leds()
-                    self.nivel_seleccionado = True
+            estado_velocidad = cls.perifericos.boton_velocidad.value()
+            if estado_velocidad == 1 and not cls.motor_encendido:
+                cls.nivel = (cls.nivel + 1) % len(cls.velocidades)
+                if cls.nivel != 0:
+                    print(f'Nivel de velocidad seleccionado: {int((cls.velocidades[cls.nivel] / 65535) * 100)}%')
+                    cls.actualizar_leds()
+                    cls.nivel_seleccionado = True
                     print("Presione el botón de confirmación para confirmar la velocidad seleccionada.")
                 else:
                     print('No se puede seleccionar velocidad 0')
                 # Esperar a que se libere el botón antes de continuar
-                while self.perifericos.boton_velocidad.value() == 1:
+                while cls.perifericos.boton_velocidad.value() == 1:
                     pass
                 utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
             
             # Permitir salida del bucle si se presiona el botón de confirmación
-            estado_confirmar = self.perifericos.boton_confirmar.value()
+            estado_confirmar = cls.perifericos.boton_confirmar.value()
             if estado_confirmar == 1:
-                self.confirmar_velocidad()
+                cls.confirmar_velocidad()
                 break
 
-    def confirmar_velocidad(self):
+    @classmethod
+    def confirmar_velocidad(cls):
         """
         Confirma la velocidad seleccionada usando un botón.
 
         Espera hasta que se presione y libere el botón de confirmación, estableciendo la confirmación de la velocidad.
         """
         while True:
-            estado_confirmar = self.perifericos.boton_confirmar.value()
+            estado_confirmar = cls.perifericos.boton_confirmar.value()
             if estado_confirmar == 1:
-                self.confirmacion_recibida = True
+                cls.confirmacion_recibida = True
                 print("Velocidad confirmada.")
                 # Esperar a que se libere el botón antes de continuar
-                while self.perifericos.boton_confirmar.value() == 1:
+                while cls.perifericos.boton_confirmar.value() == 1:
                     pass
                 utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
                 break
 
-    def actualizar_leds(self):
+    @classmethod
+    def actualizar_leds(cls):
         """
         Actualiza los LEDs según la velocidad seleccionada.
 
         Enciende el LED correspondiente al nivel de velocidad actual y apaga los demás LEDs.
         """
         # Apagar todos los LEDs
-        self.perifericos.led1.value(0)
-        self.perifericos.led2.value(0)
-        self.perifericos.led3.value(0)
+        cls.perifericos.led1.value(0)
+        cls.perifericos.led2.value(0)
+        cls.perifericos.led3.value(0)
         # Encender el LED correspondiente a la velocidad actual
-        if self.nivel == 1:
-            self.perifericos.led1.value(1)
-        elif self.nivel == 2:
-            self.perifericos.led2.value(1)
-        elif self.nivel == 3:
-            self.perifericos.led3.value(1)
+        if cls.nivel == 1:
+            cls.perifericos.led1.value(1)
+        elif cls.nivel == 2:
+            cls.perifericos.led2.value(1)
+        elif cls.nivel == 3:
+            cls.perifericos.led3.value(1)
 
-    def iniciar_motor(self):
+    @classmethod
+    def iniciar_motor(cls):
         """
         Inicia el motor si se ha seleccionado y confirmado un nivel de velocidad.
 
         Configura el duty cycle del PWM según la velocidad seleccionada y enciende el motor.
         """
-        if self.nivel_seleccionado and self.confirmacion_recibida:
-            self.perifericos.pwm.duty_u16(self.velocidades[self.nivel])
-            self.motor_encendido = True
-            print(f'Motor encendido al {(self.velocidades[self.nivel] / 65535) * 100}% de potencia')
+        if cls.nivel_seleccionado and cls.confirmacion_recibida:
+            cls.perifericos.pwm.duty_u16(cls.velocidades[cls.nivel])
+            cls.motor_encendido = True
+            print(f'Motor encendido al {(cls.velocidades[cls.nivel] / 65535) * 100}% de potencia')
         else:
             print('Por favor, seleccione y confirme un nivel de velocidad antes de iniciar el motor.')
 
-    def detener_motor(self):
+    @classmethod
+    def detener_motor(cls):
         """
         Detiene el motor y apaga los LEDs.
 
         Pone el duty cycle del PWM a 0, apaga el motor y los LEDs, y reinicia los estados de selección y confirmación.
         """
-        if self.motor_encendido:
-            self.perifericos.pwm.duty_u16(0)
-            self.perifericos.motor1.value(0)
-            self.motor_encendido = False
-            self.nivel_seleccionado = False
-            self.confirmacion_recibida = False
-            self.perifericos.led1.value(0)
-            self.perifericos.led2.value(0)
-            self.perifericos.led3.value(0)
+        if cls.motor_encendido:
+            cls.perifericos.pwm.duty_u16(0)
+            cls.perifericos.motor1.value(0)
+            cls.motor_encendido = False
+            cls.nivel_seleccionado = False
+            cls.confirmacion_recibida = False
+            cls.perifericos.led1.value(0)
+            cls.perifericos.led2.value(0)
+            cls.perifericos.led3.value(0)
             print('Motor apagado')
 
     # Métodos adicionales comentados, podrían ser utilizados para más funcionalidades
-    # def prender_motor(self):
+    # @classmethod
+    # def prender_motor(cls):
     #     """
     #     Método comentado que simula el encendido del motor en diferentes estados.
     #     """
     #     print("Motor Encendido")
-    #     self.perifericos.motor1.value(0)
-    #     self.perifericos.motor2.value(0)
+    #     cls.perifericos.motor1.value(0)
+    #     cls.perifericos.motor2.value(0)
     #     utime.sleep(1)
-    #     self.perifericos.motor1.value(0)
-    #     self.perifericos.motor2.value(1)
+    #     cls.perifericos.motor1.value(0)
+    #     cls.perifericos.motor2.value(1)
     #     utime.sleep(1)
-    #     self.perifericos.motor1.value(1)
-    #     self.perifericos.motor2.value(0)
+    #     cls.perifericos.motor1.value(1)
+    #     cls.perifericos.motor2.value(0)
     #     utime.sleep(1)
-    #     self.perifericos.motor1.value(1)
-    #     self.perifericos.motor2.value(1)
+    #     cls.perifericos.motor1.value(1)
+    #     cls.perifericos.motor2.value(1)
     #     utime.sleep(1)
         
-    # def detener_motor2(self):
+    # @classmethod
+    # def detener_motor2(cls):
     #     """
     #     Método comentado que simula el apagado del motor.
     #     """
     #     print("Motor Apagado")
-    #     self.perifericos.motor1.value(0)
-    #     self.perifericos.motor2.value(0)
+    #     cls.perifericos.motor1.value(0)
+    #     cls.perifericos.motor2.value(0)
