@@ -65,7 +65,6 @@ def web_page():
 
 def init_server():
     global on_state
-    
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind(('', 80))
     s.listen(5)
@@ -80,7 +79,6 @@ def init_server():
                 if '/?start' in request and on_state:
                     on_state = False
                     uart.write('1')
-                    # sleep_ms(100) 
                     play_tone(1000, 500, buzz)
                     Sensor()
                     logica.iniciar_motor()
@@ -102,6 +100,6 @@ def init_server():
         print("Servidor detenido")
     finally:
         s.close() 
-
+        
 if __name__ == '__main__':
     init_server()

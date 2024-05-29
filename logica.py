@@ -108,7 +108,7 @@ class Logica:
             print('Motor apagado')
 
 # Ejemplo de uso
-Logica.seleccionar_velocidad_con_boton()
+Logica.proceso_de_seleccion()
 Logica.iniciar_motor()
 # Para detener el motor
 # Logica_motor.detener_motor()
