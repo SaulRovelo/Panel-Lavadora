@@ -1,7 +1,13 @@
 from machine import Pin, PWM
 
 class Incializacion_motor:
+    """
+    Clase para inicializar los pines y periféricos del motor.
+    """
     def __init__(self):
+        """
+        Inicializa los pines del motor, LEDs y botones.
+        """    
         # Pines para el control del motor
         self.motor1 = Pin(21, Pin.OUT)
         self.pwm = PWM(Pin(22))

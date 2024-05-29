@@ -1,11 +1,11 @@
 import utime
-from inicializacion_motor import Inicializacion_motor
+from inizializacion_motor import Incializacion_motor
 
 class Logica_motor:
     """
     Clase que gestiona la lógica para seleccionar la velocidad y controlar el motor.
     """
-    perifericos = Inicializacion_motor()
+    perifericos = Incializacion_motor()
     velocidades = [0, 21845, 43690, 65535]
     nivel = 0
     motor_encendido = False
