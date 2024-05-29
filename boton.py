@@ -77,6 +77,7 @@ def init_server():
                 response = web_page()
                 conn.sendall(response.encode('utf-8'))
                 if '/?start' in request and on_state:
+                    
                     on_state = False
                     uart.write('1')
                     play_tone(1000, 500, buzz)
@@ -86,12 +87,11 @@ def init_server():
                     logica.detener_motor()
                     print("Inicio")
                 elif '/?pause' in request and not on_state:
+                    print("Pausa")
                     on_state = True
                     uart.write('0')
-                    # sleep_ms(100)
                     play_tone(1500, 500, buzz)        
                     logica.proceso_de_seleccion()
-                    print("Pausa")
             except Exception as e:
                 print("Error: ", e)
             finally:
