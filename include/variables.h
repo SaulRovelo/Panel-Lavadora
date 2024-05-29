@@ -7,8 +7,8 @@
 // Variables Boton encendido/apagado
 #define TOTAL_GPIO_PINS 26
 
-#define LED_PIN_0 0        // Define el pin del LED
-#define BUTTON_PIN_1 1     // Define el pin del botón
+#define LED_PIN_0 19        // Define el pin del LED
+#define BUTTON_PIN_1 20     // Define el pin del botón
 
 static bool led_encendido = false;
 
@@ -20,6 +20,7 @@ static bool led_encendido = false;
 #define LED_PIN_5 5
 #define LED_PIN_6 6
 #define BUTTON_PIN_7 7
+
 
 static int contador = 0; 
 
@@ -63,5 +64,9 @@ static uint16_t adc_value;
 static int contadorTA = 1;
 
 
-uint32_t sleep_duration_ms = 125;
+uint32_t sleep_duration_ms = 200;
+
+#define BUTTON_PIN_28 28
+static bool inicio = true;
+
 #endif // VARIABLES_H

@@ -70,7 +70,7 @@ void control_leds_agua() {
             printf("Ningún nivel seleccionado\n");
             contador = 0;
         }
+        uart_puts(uart0, "s1");
         //sleep_ms(200); 
     }
 }
-

@@ -14,12 +14,15 @@ void apagar_y_reiniciar_leds() {
     contadorT =1;
 }
 
-
+/**
+ * @brief Inicializa los pines de los LEDs y el botón de encendido
+ * @note Se establece el pin 19 para el led y el pin 20 para el botón
+*/
 void inicializar_boton_encendido() {
     //stdio_init_all();   // Inicializa las funciones de E/S estándar
-    gpio_init(LED_PIN_0);   // Inicializa el pin del LED
+    gpio_init(19);   // Inicializa el pin del LED //! Cambiar de 0 a 19
     gpio_set_dir(LED_PIN_0, GPIO_OUT);   // Establece el pin del LED como salida
-    gpio_init(BUTTON_PIN_1);   // Inicializa el pin del botón
+    gpio_init(20);   // Inicializa el pin del botón //! Cambiar de 1 a 20
     gpio_set_dir(BUTTON_PIN_1, GPIO_IN);   // Establece el pin del botón como entrada
     gpio_pull_up(BUTTON_PIN_1);   // Habilita la resistencia pull-up en el pin del botón
 }
