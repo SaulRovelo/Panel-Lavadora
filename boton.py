@@ -3,7 +3,7 @@ from utime import sleep_ms
 import socket
 from sounds import play_tone
 from Sensor import Sensor
-from logica_motor import Logica_motor 
+from logica import Logica 
 from ssd1306 import SSD1306_I2C
 
 
@@ -11,7 +11,7 @@ from ssd1306 import SSD1306_I2C
 uart  = UART(0, 9600, tx=Pin(0), rx=Pin(1))
 buzz = PWM(Pin(15))
 on_state = False
-motor = Logica_motor()
+motor = Logica()
 i2c = I2C(0, scl=Pin(5), sda=Pin(4))
 oled = SSD1306_I2C(128, 32, i2c)
 contador = 3
@@ -80,20 +80,18 @@ def init_server():
             try:
                 response = web_page()
                 conn.sendall(response.encode('utf-8'))
-                if '/?start' in request and on_state:
-                    
+                if '/?start' in request and on_state: 
                     on_state = False
                     uart.write('1')
                     play_tone(1000, 500, buzz)
                     Sensor()
                     while contador > 0:
-                        motor.iniciar_motor()
                         contador -= 1
                         oled.fill(0)
-                        oled.text("Inicio en: ", 0, 0)
-                        oled.text(str(contador), 0, 10)
+                        oled.text("Lavandoooo :) ", 0, 0)
                         oled.show()
-                        #sleep_ms(1000)
+                    motor.iniciar_motor()
+                    sleep_ms(3000)
                     motor.detener_motor()
                     print("Inicio")
                 elif '/?pause' in request and not on_state:

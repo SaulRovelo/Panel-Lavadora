@@ -1,11 +1,12 @@
 import utime
 from inizializacion_motor import Incializacion_motor
+from Inicializacion_sensor import Inicializacion_sensor
 from machine import Pin, PWM, UART, I2C 
 from sounds import play_tone
 from ssd1306 import SSD1306_I2C
 
-i2c = I2C(1, scl=Pin(3), sda=Pin(2))
-oled = SSD1306_I2C(128, 64, i2c)
+i2c = I2C(0, scl=Pin(5), sda=Pin(4))
+oled = SSD1306_I2C(128, 32, i2c)
 uart = UART(0, 9600, tx=Pin(0), rx=Pin(1))
 buzz = PWM(Pin(15))
 
@@ -24,12 +25,20 @@ class Logica:
             if uart.any():
                 data = uart.read().decode().strip()
                 print(data)
-                if data == "s1":
-                    
+                if data == "s1":  
                     play_tone(1500, 500, buzz)
+                    oled.fill(0)
+                    oled.text("Ciclos de Lavado", 0, 0)
+                    oled.show()
                 elif data == "s2":
                     play_tone(1000, 500, buzz)
+                    oled.fill(0)
+                    oled.text("Temperatura", 0, 0)
+                    oled.show()
                 elif data == "s3":
+                    oled.fill(0)
+                    oled.text("Tareas de lavado", 0, 0)
+                    oled.show()
                     play_tone(500, 500, buzz)
             estado_velocidad = cls.perifericos.boton_velocidad.value()
             if estado_velocidad == 1 and not cls.motor_encendido:

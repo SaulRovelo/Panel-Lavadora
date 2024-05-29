@@ -68,20 +68,23 @@ class SensorUltrasonico:
         if distancia > 11:  
             print("Nivel de agua: 0")
         elif distancia > 8.8:  
-            led_pins[0].value(0)
+            led_pins[0].value(1)
             print("Nivel de agua: 1")
         elif distancia > 6.8:  
-            led_pins[0].value(0)
-            led_pins[1].value(0)
+            led_pins[0].value(1)
+            led_pins[1].value(1)
             print("Nivel de agua: 2")
         elif distancia > 4:  
-            led_pins[0].value(0)
-            led_pins[1].value(0)
-            led_pins[2].value(0)
+            led_pins[0].value(1)
+            led_pins[1].value(1)
+            led_pins[2].value(1)
             print("Nivel de agua: 3")
         elif distancia > 0:  
-            led_pins[0].value(0)
-            led_pins[1].value(0)
-            led_pins[2].value(0)
-            led_pins[3].value(0)
+            led_pins[0].value(1)
+            led_pins[1].value(1)
+            led_pins[2].value(1)
+            led_pins[3].value(1)
             print("Nivel de agua: 4")
+        else:
+            for led in led_pins:
+                led.low()

@@ -1,3 +1,8 @@
+"""  
+    Este archivo se ejecuta al iniciar el dispositivo y se encarga de conectar el dispositivo a la red wifi y encender el led de la placa    
+"""
+    
+
 try:
     import usocket as socket
 except ImportError:
