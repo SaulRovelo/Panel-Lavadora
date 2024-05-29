@@ -33,7 +33,6 @@ int main() {
     while (true) {
         // Verificar si se presiona el botón de encendido
         if (verificar_boton_encendido()) {
-            uart_puts(uart0, "verificar_boton_encendido");
             // Controlar el estado de los LEDs de encendido
             control_leds_encendido();
             // Alternar el estado de la lavadora
@@ -54,11 +53,9 @@ int main() {
                 } else if (buffer[0] == '0') {
                     // Cambiar el estado de pausa
                     printf("Pausa\n");
-                    uart_puts(uart0, "0");
                 }
             }
             if (inicio) {
-                uart_puts(uart0, "0");
                 // Código cuando la lavadora está en estado de inicio
                 printf("Lavadora en pausa...\n");
                 leer_potenciometro(); // Lee el valor del potenciometro y asigna un valor entre 0 a 5 a una variable.
@@ -70,7 +67,6 @@ int main() {
                 apagar_leds_potenciometro(); // Apaga los leds del potenciometro
             } else {
                 printf("Inicio\n");
-                uart_puts(uart0, "1");
                 encender_leds_potenciometro();
                 sleep_ms(sleep_duration_ms); // Sleep de 125 ms
                 //char buffer[20];

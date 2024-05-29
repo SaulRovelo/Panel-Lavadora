@@ -25,7 +25,6 @@ void control_leds_temperatura()
 {
     if (gpio_get(BUTTON_PIN_27) == 0) // Verificar el estado del botón (0 o 1)
         {
-            uart_puts(uart0, "control_leds_temperatura");
             // Enciende el siguiente LED y apaga el anterior
             if (contadorT == 1) 
             {
@@ -76,8 +75,6 @@ void control_leds_temperatura()
                 gpio_put(LED_PIN_22, 0); // Apagar LED 3
                 contadorT = 1;
             }
-            char buffer[30];
-            sprintf(buffer, "0_control_leds_temperatura_%d", contadorT);
-            uart_puts(uart0, buffer);
+            uart_puts(uart0, "s2");
     }
 }

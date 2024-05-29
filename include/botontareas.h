@@ -54,8 +54,6 @@ void control_leds_tareas(){
             gpio_put(LED_PIN_16, 0); // encender LED 3
             contadorTA = 1;
         }
-        char buffer[30];
-        sprintf(buffer, "0_control_leds_tareas______%d", contadorTA);
-        uart_puts(uart0, buffer);
+        uart_puts(uart0, "s3");
     }
 }

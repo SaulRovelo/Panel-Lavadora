@@ -19,10 +19,8 @@ void inicializar_leds_agua() {
 
 // Función de control de LEDs
 void control_leds_agua() {
-        //uart_puts(uart0, "control_leds_agua 4"); 
     if (gpio_get(BUTTON_PIN_7) == 0) {    // Verificar el estado del botón (0 o 1)
         if (contador == 0) {
-            // Mandar a python "control_agua 0"
             // Enciende el siguiente LED y apaga el anterior
             gpio_put(LED_PIN_2, 1);
             gpio_put(LED_PIN_3, 0);
@@ -72,9 +70,7 @@ void control_leds_agua() {
             printf("Ningún nivel seleccionado\n");
             contador = 0;
         }
-        char buffer[30];
-        sprintf(buffer, "0_control_leds_agua________%d", contador);
-        uart_puts(uart0, buffer);
+        uart_puts(uart0, "s1");
         //sleep_ms(200); 
     }
 }
