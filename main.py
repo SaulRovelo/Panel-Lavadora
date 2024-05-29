@@ -6,8 +6,6 @@ from Sensor import Sensor
 from logica import Logica 
 from ssd1306 import SSD1306_I2C
 
-
-#Inicializamos el puerto UART
 uart  = UART(0, 9600, tx=Pin(0), rx=Pin(1))
 buzz = PWM(Pin(15))
 on_state = False

@@ -19,8 +19,18 @@ class Logica:
     confirmacion_recibida = False
     print("Logica inicializada.")
 
+
+    
     @classmethod
     def seleccionar_velocidad_con_boton(cls):
+        """
+        Inicializa la lógica del motor con los periféricos dados.
+
+        Parámetros:
+        -----------
+        perifericos : object
+            Objeto que contiene los periféricos del motor, como pines y LEDs.
+        """
         while True:
             if uart.any():
                 data = uart.read().decode().strip()
@@ -58,9 +68,15 @@ class Logica:
             if estado_confirmar == 1:
                 cls.confirmar_velocidad()
                 break
-
+    
+        
     @classmethod
     def confirmar_velocidad(cls):
+        """
+        Confirma la velocidad seleccionada usando un botón.
+
+        Espera hasta que se presione y libere el botón de confirmación, estableciendo la confirmación de la velocidad.
+        """
         while True:
             estado_confirmar = cls.perifericos.boton_confirmar.value()
             if estado_confirmar == 1:
@@ -70,9 +86,15 @@ class Logica:
                     pass
                 utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
                 break
-
+    
+        
     @classmethod
     def actualizar_leds(cls):
+        """
+        Actualiza los LEDs según la velocidad seleccionada.
+
+        Enciende el LED correspondiente al nivel de velocidad actual y apaga los demás LEDs.
+        """
         cls.perifericos.led1.value(0)
         cls.perifericos.led2.value(0)
         cls.perifericos.led3.value(0)
@@ -83,8 +105,14 @@ class Logica:
         elif cls.nivel == 3:
             cls.perifericos.led3.value(1)
 
+    
     @classmethod
     def iniciar_motor(cls):
+        """
+        Inicia el motor si se ha seleccionado y confirmado un nivel de velocidad.
+
+        Configura el duty cycle del PWM según la velocidad seleccionada y enciende el motor.
+        """
         if cls.nivel_seleccionado and cls.confirmacion_recibida:
             cls.perifericos.pwm.duty_u16(cls.velocidades[cls.nivel])
             cls.motor_encendido = True
@@ -92,8 +120,14 @@ class Logica:
         else:
             print('Por favor, seleccione y confirme un nivel de velocidad antes de iniciar el motor.')
 
+        
     @classmethod
     def detener_motor(cls):
+        """
+        Detiene el motor y apaga los LEDs.
+
+        Pone el duty cycle del PWM a 0, apaga el motor y los LEDs, y reinicia los estados de selección y confirmación.
+        """
         if cls.motor_encendido:
             cls.perifericos.pwm.duty_u16(0)
             cls.perifericos.motor1.value(0)
