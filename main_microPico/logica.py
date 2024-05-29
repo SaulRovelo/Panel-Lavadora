@@ -2,7 +2,7 @@ import utime
 from inizializacion_motor import Incializacion_motor
 from Inicializacion_sensor import Inicializacion_sensor
 from machine import Pin, PWM, UART, I2C 
-from sounds import play_tone
+from main_microPico.sounds import play_tone
 from ssd1306 import SSD1306_I2C
 
 i2c = I2C(0, scl=Pin(5), sda=Pin(4))

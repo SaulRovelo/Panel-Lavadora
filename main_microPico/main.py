@@ -1,7 +1,7 @@
 from machine import Pin, UART, PWM, I2C
 from utime import sleep_ms
 import socket
-from sounds import play_tone
+from main_microPico.sounds import play_tone
 from Sensor import Sensor
 from logica import Logica 
 from ssd1306 import SSD1306_I2C
