@@ -1,0 +1,140 @@
+import utime
+from inizializacion_motor import Incializacion_motor
+from Inicializacion_sensor import Inicializacion_sensor
+from machine import Pin, PWM, UART, I2C 
+from main_microPico.sounds import play_tone
+from ssd1306 import SSD1306_I2C
+
+i2c = I2C(0, scl=Pin(5), sda=Pin(4))
+oled = SSD1306_I2C(128, 32, i2c)
+uart = UART(0, 9600, tx=Pin(0), rx=Pin(1))
+buzz = PWM(Pin(15))
+
+class Logica:
+    perifericos = Incializacion_motor()
+    velocidades = [0, 21845, 43690, 65535]
+    nivel = 0
+    motor_encendido = False
+    nivel_seleccionado = False
+    confirmacion_recibida = False
+    print("Logica inicializada.")
+
+
+    
+    @classmethod
+    def seleccionar_velocidad_con_boton(cls):
+        """
+        Inicializa la lógica del motor con los periféricos dados.
+
+        Parámetros:
+        -----------
+        perifericos : object
+            Objeto que contiene los periféricos del motor, como pines y LEDs.
+        """
+        while True:
+            if uart.any():
+                data = uart.read().decode().strip()
+                print(data)
+                if data == "s1":  
+                    play_tone(1500, 500, buzz)
+                    oled.fill(0)
+                    oled.text("Ciclos de Lavado", 0, 0)
+                    oled.show()
+                elif data == "s2":
+                    play_tone(1000, 500, buzz)
+                    oled.fill(0)
+                    oled.text("Temperatura", 0, 0)
+                    oled.show()
+                elif data == "s3":
+                    oled.fill(0)
+                    oled.text("Tareas de lavado", 0, 0)
+                    oled.show()
+                    play_tone(500, 500, buzz)
+            estado_velocidad = cls.perifericos.boton_velocidad.value()
+            if estado_velocidad == 1 and not cls.motor_encendido:
+                cls.nivel = (cls.nivel + 1) % len(cls.velocidades)
+                if cls.nivel != 0:
+                    print(f'Nivel de velocidad seleccionado: {int((cls.velocidades[cls.nivel] / 65535) * 100)}%')
+                    cls.actualizar_leds()
+                    cls.nivel_seleccionado = True
+                    print("Presione el boton de confirmacion para confirmar la velocidad seleccionada.")
+                else:
+                    print('No se puede seleccionar velocidad 0')
+                while cls.perifericos.boton_velocidad.value() == 1:
+                    pass
+                utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
+
+            estado_confirmar = cls.perifericos.boton_confirmar.value()
+            if estado_confirmar == 1:
+                cls.confirmar_velocidad()
+                break
+    
+        
+    @classmethod
+    def confirmar_velocidad(cls):
+        """
+        Confirma la velocidad seleccionada usando un botón.
+
+        Espera hasta que se presione y libere el botón de confirmación, estableciendo la confirmación de la velocidad.
+        """
+        while True:
+            estado_confirmar = cls.perifericos.boton_confirmar.value()
+            if estado_confirmar == 1:
+                cls.confirmacion_recibida = True
+                print("Velocidad confirmada.")
+                while cls.perifericos.boton_confirmar.value() == 1:
+                    pass
+                utime.sleep_ms(300)  # Esperar un tiempo para evitar rebotes
+                break
+    
+        
+    @classmethod
+    def actualizar_leds(cls):
+        """
+        Actualiza los LEDs según la velocidad seleccionada.
+
+        Enciende el LED correspondiente al nivel de velocidad actual y apaga los demás LEDs.
+        """
+        cls.perifericos.led1.value(0)
+        cls.perifericos.led2.value(0)
+        cls.perifericos.led3.value(0)
+        if cls.nivel == 1:
+            cls.perifericos.led1.value(1)
+        elif cls.nivel == 2:
+            cls.perifericos.led2.value(1)
+        elif cls.nivel == 3:
+            cls.perifericos.led3.value(1)
+
+    
+    @classmethod
+    def iniciar_motor(cls):
+        """
+        Inicia el motor si se ha seleccionado y confirmado un nivel de velocidad.
+
+        Configura el duty cycle del PWM según la velocidad seleccionada y enciende el motor.
+        """
+        if cls.nivel_seleccionado and cls.confirmacion_recibida:
+            cls.perifericos.pwm.duty_u16(cls.velocidades[cls.nivel])
+            cls.motor_encendido = True
+            print(f'Motor encendido al {(cls.velocidades[cls.nivel] / 65535) * 100}% de potencia')
+        else:
+            print('Por favor, seleccione y confirme un nivel de velocidad antes de iniciar el motor.')
+
+        
+    @classmethod
+    def detener_motor(cls):
+        """
+        Detiene el motor y apaga los LEDs.
+
+        Pone el duty cycle del PWM a 0, apaga el motor y los LEDs, y reinicia los estados de selección y confirmación.
+        """
+        if cls.motor_encendido:
+            cls.perifericos.pwm.duty_u16(0)
+            cls.perifericos.motor1.value(0)
+            cls.motor_encendido = False
+            cls.nivel_seleccionado = False
+            cls.confirmacion_recibida = False
+            cls.perifericos.led1.value(0)
+            cls.perifericos.led2.value(0)
+            cls.perifericos.led3.value(0)
+            print('Motor apagado')
