@@ -22,7 +22,7 @@ Comunicación Serial:
     Utiliza UART para enviar comandos a la lavadora.
     Envía '1' para iniciar y '0' para pausar el ciclo de lavado. 
 ## Diagrama de Flujo
-<img src="diagrama_Flujo.png"> 
+<img src="flujo.jpg"> 
 
 ## Materiales
 - Sensor ultrasónico
@@ -36,11 +36,6 @@ Comunicación Serial:
 - Motor
 - Driver Motor
 - Pila 
-
-## Esquema fisico
-<img src="esquematico.png">
-
-
 
 ## Funcionamiento
 
@@ -82,7 +77,8 @@ Este proyecto implementa un sistema de control para una lavadora a través de un
 ### Conclusión
 El sistema permite controlar una lavadora de manera remota a través de una interfaz web sencilla, proporcionando una experiencia de usuario mejorada y facilitando el manejo del electrodoméstico.
 
-
+## Esquema fisico
+<img src="esquematico.png">
 
 ## Instalación y Uso
 
