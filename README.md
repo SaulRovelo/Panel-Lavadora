@@ -110,6 +110,23 @@ Panel-Lavadora-main/
 └── pico_sdk_import.cmake        # Importación del SDK de la Raspberry Pi Pico
 
 ```
+## Gestión del Proyecto
+
+El desarrollo se organizó mediante Sprints y un tablero Scrum creado en Notion, donde se administraron y priorizaron todas las tareas del proyecto.
+
+### Sprints realizados
+- **Sprint 1:** Configuración del hardware, conexiones iniciales y pruebas de botones y buzzer.  
+- **Sprint 2:** Integración del sensor ultrasónico, driver L298N, motor y lógica básica de control.  
+- **Sprint 3:** Implementación completa del ciclo de lavado, comunicación UART, interfaz web y documentación final.
+
+Este proceso permitió planear, organizar y revisar el avance del sistema de manera estructurada.
+
+### Tablero y documentación del proyecto (Notion)
+
+Puedes consultar la planificación y organización del proyecto en el siguiente enlace:
+
+**Notion:**  
+https://www.notion.so/006212043bd34abf85a1093888ad1535?v=0278c1360381474e96957951314bba89&source=copy_link
 
 ## Autoría
 
